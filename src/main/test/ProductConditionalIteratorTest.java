@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.util.Iterator;
 
-public class ProductConditionIteratorTest {
+public class ProductConditionalIteratorTest {
     @Test
     public void shouldCorrectlyWorkIteratorWithTrue() {
         ProductArrayList<Product> products = new ProductArrayList<>();

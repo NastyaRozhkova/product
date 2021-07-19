@@ -6,10 +6,18 @@ import com.epam.batrachenko.task1.List.ProductArrayList;
 import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
-public class ProductConditionIterator<E extends Product> extends ProductIterator<E> {
+/**
+ * An iterator over a collection of products.
+ * Iterator contains the condition for iterating over the collection, that is,
+ * only those elements of the collection that match the condition are returned.
+ * @see ProductArrayList, ProductIterator, Predicate
+ * @author Vladyslav Batrachenko
+ * @param <E> – the type of elements returned by this iterator
+ */
+public class ProductConditionalIterator<E extends Product> extends ProductIterator<E> {
     Predicate<E> condition;
 
-    public ProductConditionIterator(Predicate<E> condition, ProductArrayList<E> products) {
+    public ProductConditionalIterator(Predicate<E> condition, ProductArrayList<E> products) {
         super(products);
         this.condition = condition;
     }

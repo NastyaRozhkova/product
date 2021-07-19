@@ -1,7 +1,7 @@
 package com.epam.batrachenko.task1.List;
 
 import com.epam.batrachenko.task1.Entity.Product;
-import com.epam.batrachenko.task1.Iterator.ProductConditionIterator;
+import com.epam.batrachenko.task1.Iterator.ProductConditionalIterator;
 import com.epam.batrachenko.task1.Iterator.ProductIterator;
 
 import java.lang.reflect.Array;
@@ -149,9 +149,8 @@ public class ProductArrayList<E extends Product> implements List<E> {
         return new ProductIterator<>(this);
     }
 
-
     public Iterator<E> conditionIterator(Predicate<E> predicate) {
-        return new ProductConditionIterator<>(predicate, this);
+        return new ProductConditionalIterator<>(predicate, this);
     }
 
     @Override
@@ -189,7 +188,7 @@ public class ProductArrayList<E extends Product> implements List<E> {
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        if (c == null) {
+        if (nullChecking(c)) {
             return false;
         }
         for (Object temp : c) {
@@ -202,7 +201,7 @@ public class ProductArrayList<E extends Product> implements List<E> {
 
     @Override
     public boolean addAll(Collection<? extends E> c) {
-        if (c == null) {
+        if (nullChecking(c)) {
             return false;
         }
         for (E temp : c) {
@@ -213,7 +212,7 @@ public class ProductArrayList<E extends Product> implements List<E> {
 
     @Override
     public boolean addAll(int index, Collection<? extends E> c) {
-        if (c == null) {
+        if (nullChecking(c)) {
             return false;
         }
         for (E temp : c) {
@@ -224,7 +223,7 @@ public class ProductArrayList<E extends Product> implements List<E> {
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        if (c == null) {
+        if (nullChecking(c)) {
             return false;
         }
         boolean flag = false;
@@ -236,8 +235,9 @@ public class ProductArrayList<E extends Product> implements List<E> {
         return flag;
     }
 
+    @Override
     public boolean retainAll(Collection<?> c) {
-        if (c == null) {
+        if (nullChecking(c)) {
             return false;
         }
         boolean flag = false;
@@ -250,6 +250,9 @@ public class ProductArrayList<E extends Product> implements List<E> {
             }
         }
         return flag;
+    }
+    private boolean nullChecking(Object o){
+        return o==null;
     }
 }
 

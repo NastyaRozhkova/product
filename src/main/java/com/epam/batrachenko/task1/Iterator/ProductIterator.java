@@ -6,6 +6,14 @@ import com.epam.batrachenko.task1.List.ProductArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * An iterator over a collection of products.
+ * An iterator contains methods for checking if there is a next item in the collection
+ * and returning a boolean value, and for getting the next item from the collection.
+ * @see ProductArrayList, Iterator, Iterable
+ * @author Vladyslav Batrachenko
+ * @param <E> – the type of elements returned by this iterator
+ */
 public class ProductIterator<E extends Product> implements Iterator<E> {
     protected ProductArrayList<E> productArrayList;
     protected int index;
