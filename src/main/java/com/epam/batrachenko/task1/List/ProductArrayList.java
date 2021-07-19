@@ -8,6 +8,19 @@ import java.lang.reflect.Array;
 import java.util.*;
 import java.util.function.Predicate;
 
+/**
+ * A resizable array-based interface implementation.
+ * Has a capacity that expands when the size of the collection reaches it.
+ * The default capacity is 10 cells. Is a generic for the product class and its descendants.
+ * Contains basic methods for working with a list: get,clear, set, add, remove, indexOf, contains.
+ * listIterator and sublist are unsupported.
+ * Has methods for addition, removing and retain collection.
+ * Has private method for checking object for null, which throw NullPointerException if object is null.
+ * Has two iterator. First is simple iterator without some condition.
+ * Second iterator with condition, which iterates element, that meets the condition.
+ * @see Product, List
+ * @author Vladyslav Batrachenko
+ */
 public class ProductArrayList<E extends Product> implements List<E> {
     private static final int DEFAULT_CAPACITY = 10;
     private E[] array;
