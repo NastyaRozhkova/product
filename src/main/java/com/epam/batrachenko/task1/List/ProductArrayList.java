@@ -1,23 +1,24 @@
 package com.epam.batrachenko.task1.List;
 
 import com.epam.batrachenko.task1.Entity.Product;
+import com.epam.batrachenko.task1.Iterator.ProductConditionIterator;
 import com.epam.batrachenko.task1.Iterator.ProductIterator;
 
 import java.lang.reflect.Array;
 import java.util.*;
 import java.util.function.Predicate;
 
-public class ProductContainer<E extends Product> implements List<E> {
+public class ProductArrayList<E extends Product> implements List<E> {
     private static final int DEFAULT_CAPACITY = 10;
     private E[] array;
     private int size;
 
-    public ProductContainer() {
+    public ProductArrayList() {
         this.array = (E[]) new Product[DEFAULT_CAPACITY];
         this.size = 0;
     }
 
-    public ProductContainer(Class<E> dataType, int capacity) {
+    public ProductArrayList(Class<E> dataType, int capacity) {
         this.array = (E[]) Array.newInstance(dataType, capacity);
         this.size = 0;
     }
@@ -58,7 +59,6 @@ public class ProductContainer<E extends Product> implements List<E> {
             } else {
                 System.arraycopy(this.array, index, this.array, index + 1, this.size - index);
             }
-
             this.array[index] = element;
             ++this.size;
         } else {
@@ -79,32 +79,33 @@ public class ProductContainer<E extends Product> implements List<E> {
     }
 
     @Override
+    public boolean remove(Object o) {
+        for (int i = 0; i < this.size; ++i) {
+            if (Objects.equals(this.array[i], o)) {
+                this.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     public int indexOf(Object o) {
         for (int i = 0; i < this.size; ++i) {
-            if (this.array[i] == null) {
-                if (o == null) {
-                    return i;
-                }
-            } else if (this.array[i].equals(o)) {
+            if (Objects.equals(this.array[i], o)) {
                 return i;
             }
         }
-
         return -1;
     }
 
     @Override
     public int lastIndexOf(Object o) {
         for (int i = this.size - 1; i >= 0; --i) {
-            if (this.array[i] == null) {
-                if (o == null) {
-                    return i;
-                }
-            } else if (this.array[i].equals(o)) {
+            if (Objects.equals(this.array[i], o)) {
                 return i;
             }
         }
-
         return -1;
     }
 
@@ -136,26 +137,21 @@ public class ProductContainer<E extends Product> implements List<E> {
     @Override
     public boolean contains(Object o) {
         for (int i = 0; i < this.size; ++i) {
-            if (this.array[i] == null) {
-                if (o == null) {
-                    return true;
-                }
-            } else if (this.array[i].equals(o)) {
+            if (Objects.equals(this.array[i], o)) {
                 return true;
             }
         }
-
         return false;
     }
 
     @Override
     public Iterator<E> iterator() {
-        return new ProductIterator<E>(this);
+        return new ProductIterator<>(this);
     }
 
 
-    public Iterator<E> logicIterator(Predicate<E> predicate) {
-        return new ProductIterator<E>(predicate,this);
+    public Iterator<E> conditionIterator(Predicate<E> predicate) {
+        return new ProductConditionIterator<>(predicate, this);
     }
 
     @Override
@@ -172,7 +168,6 @@ public class ProductContainer<E extends Product> implements List<E> {
             if (a.length > this.size) {
                 a[this.size] = null;
             }
-
             return a;
         }
     }
@@ -187,27 +182,10 @@ public class ProductContainer<E extends Product> implements List<E> {
         } else {
             this.array[this.size] = e;
         }
-
         ++this.size;
         return true;
     }
 
-    @Override
-    public boolean remove(Object o) {
-        for (int i = 0; i < this.size; ++i) {
-            if (this.array[i] == null) {
-                if (o == null) {
-                    this.remove(i);
-                    return true;
-                }
-            } else if (this.array[i].equals(o)) {
-                this.remove(i);
-                return true;
-            }
-        }
-
-        return false;
-    }
 
     @Override
     public boolean containsAll(Collection<?> c) {
@@ -235,7 +213,7 @@ public class ProductContainer<E extends Product> implements List<E> {
 
     @Override
     public boolean addAll(int index, Collection<? extends E> c) {
-        if(c==null){
+        if (c == null) {
             return false;
         }
         for (E temp : c) {
@@ -244,68 +222,34 @@ public class ProductContainer<E extends Product> implements List<E> {
         return true;
     }
 
+    @Override
     public boolean removeAll(Collection<?> c) {
-        if(c==null){
+        if (c == null) {
             return false;
         }
-        boolean flag=false;
+        boolean flag = false;
         for (Object temp : c) {
-            if(remove(temp)){
-                flag=true;
+            if (remove(temp)) {
+                flag = true;
             }
         }
         return flag;
     }
 
     public boolean retainAll(Collection<?> c) {
-        if(c==null){
+        if (c == null) {
             return false;
         }
-        boolean flag=false;
-        for (Object temp : array) {
-            if(!c.contains(temp)){
-                if(remove(temp)){
-                    flag=true;
+        boolean flag = false;
+        for (int i=0;i<size;i++) {
+            if (!c.contains(array[i])) {
+                if (remove(array[i])) {
+                    flag = true;
+                    i--;
                 }
             }
         }
         return flag;
     }
-
-    /*private class ProductIterator implements Iterator<E> {
-        private int index;
-        Predicate<E> logic;
-
-        public ProductIterator(Predicate<E> logic) {
-            this.index = 0;
-            this.logic = logic;
-        }
-
-        public ProductIterator() {
-            this.index = 0;
-            this.logic = (E) -> true;
-        }
-
-        public boolean hasNext() {
-            for (int temp = this.index; temp + 1 < size; ++temp) {
-                if (this.logic.test(array[temp])) {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        public E next() {
-            while (this.index + 1 < size) {
-                if (this.logic.test(array[this.index])) {
-                    return array[this.index];
-                }
-                ++this.index;
-            }
-            throw new NoSuchElementException();
-        }
-    }*/
-
 }
 
