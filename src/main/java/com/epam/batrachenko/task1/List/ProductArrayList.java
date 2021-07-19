@@ -31,51 +31,35 @@ public class ProductArrayList<E extends Product> implements List<E> {
 
     @Override
     public E get(int index) {
-        if (index >= 0 && index < this.size) {
-            return this.array[index];
-        } else {
-            throw new ArrayIndexOutOfBoundsException();
-        }
+        return this.array[index];
     }
 
     @Override
     public E set(int index, E element) {
-        if (index >= 0 && index < this.size) {
-            this.array[index] = element;
-            return this.array[index];
-        } else {
-            throw new ArrayIndexOutOfBoundsException();
-        }
+        this.array[index] = element;
+        return this.array[index];
     }
 
     @Override
     public void add(int index, E element) {
-        if (index >= 0 && index <= this.size) {
-            if (this.array.length == this.size) {
-                E[] newArray = (E[]) new Object[this.array.length * 2];
-                System.arraycopy(this.array, 0, newArray, 0, index);
-                System.arraycopy(this.array, index, newArray, index + 1, this.size - index);
-                this.array = newArray;
-            } else {
-                System.arraycopy(this.array, index, this.array, index + 1, this.size - index);
-            }
-            this.array[index] = element;
-            ++this.size;
+        if (this.array.length == this.size) {
+            E[] newArray = (E[]) new Object[this.array.length * 2];
+            System.arraycopy(this.array, 0, newArray, 0, index);
+            System.arraycopy(this.array, index, newArray, index + 1, this.size - index);
+            this.array = newArray;
         } else {
-            throw new ArrayIndexOutOfBoundsException();
+            System.arraycopy(this.array, index, this.array, index + 1, this.size - index);
         }
+        this.array[index] = element;
+        ++this.size;
     }
 
     @Override
     public E remove(int index) {
-        if (index >= 0 && index < this.size) {
-            E temp = this.array[index];
-            System.arraycopy(this.array, index + 1, this.array, index, this.size - index);
-            --this.size;
-            return temp;
-        } else {
-            throw new ArrayIndexOutOfBoundsException();
-        }
+        E temp = this.array[index];
+        System.arraycopy(this.array, index + 1, this.array, index, this.size - index);
+        --this.size;
+        return temp;
     }
 
     @Override
@@ -188,9 +172,7 @@ public class ProductArrayList<E extends Product> implements List<E> {
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        if (nullChecking(c)) {
-            return false;
-        }
+        checkNull(c);
         for (Object temp : c) {
             if (!contains(temp)) {
                 return false;
@@ -201,9 +183,7 @@ public class ProductArrayList<E extends Product> implements List<E> {
 
     @Override
     public boolean addAll(Collection<? extends E> c) {
-        if (nullChecking(c)) {
-            return false;
-        }
+        checkNull(c);
         for (E temp : c) {
             add(temp);
         }
@@ -212,9 +192,7 @@ public class ProductArrayList<E extends Product> implements List<E> {
 
     @Override
     public boolean addAll(int index, Collection<? extends E> c) {
-        if (nullChecking(c)) {
-            return false;
-        }
+        checkNull(c);
         for (E temp : c) {
             add(index, temp);
         }
@@ -223,9 +201,7 @@ public class ProductArrayList<E extends Product> implements List<E> {
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        if (nullChecking(c)) {
-            return false;
-        }
+        checkNull(c);
         boolean flag = false;
         for (Object temp : c) {
             if (remove(temp)) {
@@ -237,11 +213,9 @@ public class ProductArrayList<E extends Product> implements List<E> {
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        if (nullChecking(c)) {
-            return false;
-        }
+        checkNull(c);
         boolean flag = false;
-        for (int i=0;i<size;i++) {
+        for (int i = 0; i < size; i++) {
             if (!c.contains(array[i])) {
                 if (remove(array[i])) {
                     flag = true;
@@ -251,8 +225,11 @@ public class ProductArrayList<E extends Product> implements List<E> {
         }
         return flag;
     }
-    private boolean nullChecking(Object o){
-        return o==null;
+
+    private void checkNull(Object o) {
+        if (o == null) {
+            throw new NullPointerException();
+        }
     }
 }
 
