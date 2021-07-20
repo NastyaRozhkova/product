@@ -36,6 +36,12 @@ public class ProductArrayList<E extends Product> implements List<E> {
         this.size = 0;
     }
 
+    public ProductArrayList(ProductArrayList<E> products) {
+        this.array = (E[]) new Product[products.size()];
+        this.size = products.size();
+        System.arraycopy(products.array, 0, this.array, 0, this.size);
+    }
+
     @Override
     public void clear() {
         this.array = (E[]) new Product[DEFAULT_CAPACITY];
