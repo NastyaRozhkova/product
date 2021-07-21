@@ -1,11 +1,10 @@
+package com.epam.batrachenko.task1.List;
+
 import com.epam.batrachenko.task1.Entity.Product;
-import com.epam.batrachenko.task1.List.ProductArrayList;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.Objects;
 
 public class ProductArrayListTest {
     @Test
@@ -146,13 +145,18 @@ public class ProductArrayListTest {
     @Test
     public void shouldCorrectlyRetainCollection() {
         ProductArrayList<Product> products = new ProductArrayList<>();
+
         products.add(new Product("test", new BigDecimal("10"), "uk"));
         products.add(new Product("test", new BigDecimal("11"), "uk"));
         products.add(new Product("test", new BigDecimal("12"), "uk"));
+
         ProductArrayList<Product> retainCollection = new ProductArrayList<>();
+
         retainCollection.add(new Product("test", new BigDecimal("12"), "uk"));
         retainCollection.add(new Product("test", new BigDecimal("13"), "uk"));
+
         products.retainAll(retainCollection);
+
         Assert.assertEquals(new Product("test", new BigDecimal("12"), "uk"), products.get(0));
         Assert.assertEquals(1, products.size());
     }

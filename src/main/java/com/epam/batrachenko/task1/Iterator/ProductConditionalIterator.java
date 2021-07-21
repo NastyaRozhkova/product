@@ -15,7 +15,7 @@ import java.util.function.Predicate;
  * @param <E> – the type of elements returned by this iterator
  */
 public class ProductConditionalIterator<E extends Product> extends ProductIterator<E> {
-    Predicate<E> condition;
+    final Predicate<E> condition;
 
     public ProductConditionalIterator(Predicate<E> condition, ProductArrayList<E> products) {
         super(products);

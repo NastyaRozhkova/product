@@ -45,7 +45,7 @@ public class Accessories extends Product {
     }
 
     public int hashCode() {
-        return Objects.hash(new Object[]{super.hashCode(), this.type, this.brand});
+        return Objects.hash(super.hashCode(), this.type, this.brand);
     }
 }
 

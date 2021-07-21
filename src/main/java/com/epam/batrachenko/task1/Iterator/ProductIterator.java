@@ -15,7 +15,7 @@ import java.util.NoSuchElementException;
  * @param <E> – the type of elements returned by this iterator
  */
 public class ProductIterator<E extends Product> implements Iterator<E> {
-    protected ProductArrayList<E> productArrayList;
+    protected final ProductArrayList<E> productArrayList;
     protected int index;
 
     public ProductIterator(ProductArrayList<E> products) {

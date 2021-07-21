@@ -56,7 +56,7 @@ public class GraphicsCard extends ComputerPart {
     }
 
     public int hashCode() {
-        return Objects.hash(new Object[]{super.hashCode(), this.memory, this.memoryType, this.connector});
+        return Objects.hash(super.hashCode(), this.memory, this.memoryType, this.connector);
     }
 }
 

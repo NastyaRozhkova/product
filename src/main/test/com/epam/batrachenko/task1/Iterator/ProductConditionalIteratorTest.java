@@ -1,3 +1,5 @@
+package com.epam.batrachenko.task1.Iterator;
+
 import com.epam.batrachenko.task1.Entity.Product;
 import com.epam.batrachenko.task1.List.ProductArrayList;
 import org.junit.Assert;

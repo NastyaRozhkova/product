@@ -46,6 +46,6 @@ public class ComputerPart extends Product {
     }
 
     public int hashCode() {
-        return Objects.hash(new Object[]{super.hashCode(), this.category, this.purpose});
+        return Objects.hash(super.hashCode(), this.category, this.purpose);
     }
 }

@@ -22,9 +22,9 @@ import java.util.function.Predicate;
  * @author Vladyslav Batrachenko
  */
 public class ProductArrayList<E extends Product> implements List<E> {
-    private static final int DEFAULT_CAPACITY = 10;
-    private E[] array;
-    private int size;
+    protected static final int DEFAULT_CAPACITY = 10;
+    protected E[] array;
+    protected int size;
 
     public ProductArrayList() {
         this.array = (E[]) new Product[DEFAULT_CAPACITY];
@@ -62,7 +62,7 @@ public class ProductArrayList<E extends Product> implements List<E> {
     @Override
     public void add(int index, E element) {
         if (this.array.length == this.size) {
-            E[] newArray = (E[]) new Object[this.array.length * 2];
+            E[] newArray = (E[]) new Product[this.array.length * 2];
             System.arraycopy(this.array, 0, newArray, 0, index);
             System.arraycopy(this.array, index, newArray, index + 1, this.size - index);
             this.array = newArray;
@@ -76,7 +76,11 @@ public class ProductArrayList<E extends Product> implements List<E> {
     @Override
     public E remove(int index) {
         E temp = this.array[index];
-        System.arraycopy(this.array, index + 1, this.array, index, this.size - index);
+        if (index + 1 == this.size) {
+            this.array[index] = null;
+        } else {
+            System.arraycopy(this.array, index + 1, this.array, index, this.size - index);
+        }
         --this.size;
         return temp;
     }
@@ -177,7 +181,7 @@ public class ProductArrayList<E extends Product> implements List<E> {
     @Override
     public boolean add(E e) {
         if (this.size == this.array.length) {
-            E[] newArray = (E[]) new Object[this.array.length * 2];
+            E[] newArray = (E[]) new Product[this.array.length * 2];
             System.arraycopy(this.array, 0, newArray, 0, this.size);
             newArray[this.size] = e;
             this.array = newArray;

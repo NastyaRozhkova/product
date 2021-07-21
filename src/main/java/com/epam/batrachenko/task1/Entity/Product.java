@@ -54,7 +54,7 @@ public class Product {
     }
 
     public int hashCode() {
-        return Objects.hash(new Object[]{this.name, this.price, this.country});
+        return Objects.hash(this.name, this.price, this.country);
     }
 }
 
