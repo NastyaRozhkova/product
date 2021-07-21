@@ -5,7 +5,14 @@ import com.epam.batrachenko.task1.List.ProductArrayList;
 
 import java.util.Collection;
 
-public class UnmodifiableProductList<E extends Product> extends ProductListWithWrappers<E> {
+/**
+ * Unmodifiable list unsupported any method that change data.
+ * In this methods throw UnsupportedOperationException.
+ *
+ * @author Vladyslav Batrachenko
+ * @see Product, UnmodifiableProductList, ProductArrayList, List
+ */
+public class UnmodifiableProductList<E extends Product> extends ProductArrayList<E> {
 
     public UnmodifiableProductList(ProductArrayList<E> products) {
         super(products);
