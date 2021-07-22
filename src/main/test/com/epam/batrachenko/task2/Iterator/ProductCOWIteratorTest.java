@@ -11,7 +11,7 @@ import java.util.Iterator;
 
 public class ProductCOWIteratorTest {
     @Test
-    public void shouldCorrectlyWorkIteratorInForEach(){
+    public void shouldCorrectlyWorkInForEach(){
         ProductCOWList<Product> products=new ProductCOWList<>();
 
         products.add(0, new Product("test", new BigDecimal("10"), "uk"));

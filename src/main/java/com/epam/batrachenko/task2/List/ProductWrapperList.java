@@ -23,8 +23,8 @@ public class ProductWrapperList<E extends Product> implements List<E> {
         this.modifiableProductList = modifiableProductList;
     }
 
-    public ProductArrayList<Product> getList() {
-        ProductArrayList<Product> arrayList = new ProductArrayList<>();
+    public ProductArrayList<E> getList() {
+        ProductArrayList<E> arrayList = new ProductArrayList<>();
         arrayList.addAll(unmodifiableProductList);
         arrayList.addAll(modifiableProductList);
         return arrayList;
@@ -146,7 +146,7 @@ public class ProductWrapperList<E extends Product> implements List<E> {
     public int indexOf(Object o) {
         int index = unmodifiableProductList.indexOf(o);
         if (index == -1) {
-            return modifiableProductList.indexOf(o);
+            return modifiableProductList.indexOf(o) + unmodifiableProductList.size();
         } else {
             return index;
         }
@@ -158,14 +158,15 @@ public class ProductWrapperList<E extends Product> implements List<E> {
         if (index == -1) {
             return unmodifiableProductList.lastIndexOf(o);
         } else {
-            return index;
+            return index + unmodifiableProductList.size();
         }
     }
 
     private void checkIndexInUnmodifiableList(int index) {
-        if (index < 0 || index > this.size() ||
-                (unmodifiableProductList.size() > 0 && index >= 0 && index < unmodifiableProductList.size())) {
-            throw new UnsupportedOperationException("!");
+        if (index < 0 || index > this.size()) {
+            throw new IndexOutOfBoundsException();
+        } else if (unmodifiableProductList.size() > 0 && index >= 0 && index < unmodifiableProductList.size()){
+            throw new UnsupportedOperationException("Unmodifiable part of list");
         }
     }
 

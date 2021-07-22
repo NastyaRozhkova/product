@@ -15,7 +15,7 @@ import java.util.Collection;
 public class UnmodifiableProductList<E extends Product> extends ProductArrayList<E> {
 
     public UnmodifiableProductList(ProductArrayList<E> products) {
-        super(products);
+       super(products);
     }
 
     @Override
@@ -44,6 +44,11 @@ public class UnmodifiableProductList<E extends Product> extends ProductArrayList
     }
 
     @Override
+    public void add(int index, E element) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public boolean addAll(Collection<? extends E> c) {
         throw new UnsupportedOperationException();
     }
@@ -62,4 +67,5 @@ public class UnmodifiableProductList<E extends Product> extends ProductArrayList
     public boolean retainAll(Collection<?> c) {
         throw new UnsupportedOperationException();
     }
+
 }

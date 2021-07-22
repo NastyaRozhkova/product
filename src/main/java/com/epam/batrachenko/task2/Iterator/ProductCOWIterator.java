@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * An iterator over a collection of products and resistant to data change.
+ * An copy on write iterator over a collection of products and resistant to data change.
  * @see ProductCOWList , Iterator, Iterable
  * @author Vladyslav Batrachenko
  */
@@ -16,7 +16,7 @@ public class ProductCOWIterator<E extends Product> implements Iterator<E> {
     private int index;
 
     public ProductCOWIterator(ProductCOWList<E> products) {
-        this.productArrayList = new ProductCOWList<>(products);
+        this.productArrayList = products;
         this.index = -1;
     }
 
