@@ -22,9 +22,9 @@ import java.util.function.Predicate;
  * @author Vladyslav Batrachenko
  */
 public class ProductArrayList<E extends Product> implements List<E> {
-    protected static final int DEFAULT_CAPACITY = 10;
-    protected E[] array;
-    protected int size;
+    private static final int DEFAULT_CAPACITY = 10;
+    private E[] array;
+    private int size;
 
     public ProductArrayList() {
         this.array = (E[]) new Product[DEFAULT_CAPACITY];
@@ -217,7 +217,7 @@ public class ProductArrayList<E extends Product> implements List<E> {
     public boolean addAll(int index, Collection<? extends E> c) {
         checkNull(c);
         for (E temp : c) {
-            add(index, temp);
+            add(index++, temp);
         }
         return true;
     }
