@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 
-public class ProductWrapperListTest {
+public class UnmodifiableAndModifiableProductListTest {
 
     @Test
     public void shouldNotAddToStart() {
@@ -21,7 +21,7 @@ public class ProductWrapperListTest {
         modifiableProducts.add(new Product("test", new BigDecimal("12"), "uk"));
         modifiableProducts.add(new Product("test", new BigDecimal("13"), "uk"));
 
-        ProductWrapperList<Product> products = new ProductWrapperList<>(unmodifiableProducts, modifiableProducts);
+        UnmodifiableAndModifiableProductList<Product> products = new UnmodifiableAndModifiableProductList<>(unmodifiableProducts, modifiableProducts);
 
         Assert.assertThrows(UnsupportedOperationException.class, () -> products.add(0, new Product("test", new BigDecimal("14"), "uk")));
     }
@@ -38,7 +38,7 @@ public class ProductWrapperListTest {
         modifiableProducts.add(new Product("test", new BigDecimal("12"), "uk"));
         modifiableProducts.add(new Product("test", new BigDecimal("13"), "uk"));
 
-        ProductWrapperList<Product> products = new ProductWrapperList<>(unmodifiableProducts, modifiableProducts);
+        UnmodifiableAndModifiableProductList<Product> products = new UnmodifiableAndModifiableProductList<>(unmodifiableProducts, modifiableProducts);
 
         products.add(new Product("test", new BigDecimal("14"), "uk"));
 
@@ -57,7 +57,7 @@ public class ProductWrapperListTest {
         modifiableProducts.add(new Product("test", new BigDecimal("12"), "uk"));
         modifiableProducts.add(new Product("test", new BigDecimal("13"), "uk"));
 
-        ProductWrapperList<Product> products = new ProductWrapperList<>(unmodifiableProducts, modifiableProducts);
+        UnmodifiableAndModifiableProductList<Product> products = new UnmodifiableAndModifiableProductList<>(unmodifiableProducts, modifiableProducts);
 
         Assert.assertThrows(UnsupportedOperationException.class, () -> products.add(1, new Product("test", new BigDecimal("14"), "uk")));
     }
@@ -74,7 +74,7 @@ public class ProductWrapperListTest {
         modifiableProducts.add(new Product("test", new BigDecimal("12"), "uk"));
         modifiableProducts.add(new Product("test", new BigDecimal("13"), "uk"));
 
-        ProductWrapperList<Product> products = new ProductWrapperList<>(unmodifiableProducts, modifiableProducts);
+        UnmodifiableAndModifiableProductList<Product> products = new UnmodifiableAndModifiableProductList<>(unmodifiableProducts, modifiableProducts);
 
         products.add(2, new Product("test", new BigDecimal("14"), "uk"));
 
@@ -93,7 +93,7 @@ public class ProductWrapperListTest {
         modifiableProducts.add(new Product("test", new BigDecimal("12"), "uk"));
         modifiableProducts.add(new Product("test", new BigDecimal("13"), "uk"));
 
-        ProductWrapperList<Product> products = new ProductWrapperList<>(unmodifiableProducts, modifiableProducts);
+        UnmodifiableAndModifiableProductList<Product> products = new UnmodifiableAndModifiableProductList<>(unmodifiableProducts, modifiableProducts);
 
         Assert.assertThrows(UnsupportedOperationException.class, () -> products.remove(0));
     }
@@ -110,7 +110,7 @@ public class ProductWrapperListTest {
         modifiableProducts.add(new Product("test", new BigDecimal("12"), "uk"));
         modifiableProducts.add(new Product("test", new BigDecimal("13"), "uk"));
 
-        ProductWrapperList<Product> products = new ProductWrapperList<>(unmodifiableProducts, modifiableProducts);
+        UnmodifiableAndModifiableProductList<Product> products = new UnmodifiableAndModifiableProductList<>(unmodifiableProducts, modifiableProducts);
 
         products.remove(products.size() - 1);
 
@@ -129,7 +129,7 @@ public class ProductWrapperListTest {
         modifiableProducts.add(new Product("test", new BigDecimal("12"), "uk"));
         modifiableProducts.add(new Product("test", new BigDecimal("13"), "uk"));
 
-        ProductWrapperList<Product> products = new ProductWrapperList<>(unmodifiableProducts, modifiableProducts);
+        UnmodifiableAndModifiableProductList<Product> products = new UnmodifiableAndModifiableProductList<>(unmodifiableProducts, modifiableProducts);
 
         Assert.assertEquals(new Product("test", new BigDecimal("11"), "uk"), products.get(1));
         Assert.assertEquals(new Product("test", new BigDecimal("12"), "uk"), products.get(2));
@@ -147,7 +147,7 @@ public class ProductWrapperListTest {
         modifiableProducts.add(new Product("test", new BigDecimal("12"), "uk"));
         modifiableProducts.add(new Product("test", new BigDecimal("13"), "uk"));
 
-        ProductWrapperList<Product> products = new ProductWrapperList<>(unmodifiableProducts, modifiableProducts);
+        UnmodifiableAndModifiableProductList<Product> products = new UnmodifiableAndModifiableProductList<>(unmodifiableProducts, modifiableProducts);
 
         products.remove(new Product("test", new BigDecimal("12"), "uk"));
 
@@ -166,7 +166,7 @@ public class ProductWrapperListTest {
         modifiableProducts.add(new Product("test", new BigDecimal("12"), "uk"));
         modifiableProducts.add(new Product("test", new BigDecimal("13"), "uk"));
 
-        ProductWrapperList<Product> products = new ProductWrapperList<>(unmodifiableProducts, modifiableProducts);
+        UnmodifiableAndModifiableProductList<Product> products = new UnmodifiableAndModifiableProductList<>(unmodifiableProducts, modifiableProducts);
 
         Assert.assertThrows(UnsupportedOperationException.class, () -> products.remove(new Product("test", new BigDecimal("11"), "uk")));
     }
@@ -183,7 +183,7 @@ public class ProductWrapperListTest {
         modifiableProducts.add(new Product("test", new BigDecimal("12"), "uk"));
         modifiableProducts.add(new Product("test", new BigDecimal("13"), "uk"));
 
-        ProductWrapperList<Product> products = new ProductWrapperList<>(unmodifiableProducts, modifiableProducts);
+        UnmodifiableAndModifiableProductList<Product> products = new UnmodifiableAndModifiableProductList<>(unmodifiableProducts, modifiableProducts);
 
         Assert.assertTrue(products.contains(new Product("test", new BigDecimal("12"), "uk")));
         Assert.assertTrue(products.contains(new Product("test", new BigDecimal("11"), "uk")));
@@ -202,7 +202,7 @@ public class ProductWrapperListTest {
         modifiableProducts.add(new Product("test", new BigDecimal("12"), "uk"));
         modifiableProducts.add(new Product("test", new BigDecimal("13"), "uk"));
 
-        ProductWrapperList<Product> products = new ProductWrapperList<>(unmodifiableProducts, modifiableProducts);
+        UnmodifiableAndModifiableProductList<Product> products = new UnmodifiableAndModifiableProductList<>(unmodifiableProducts, modifiableProducts);
 
         products.clear();
 

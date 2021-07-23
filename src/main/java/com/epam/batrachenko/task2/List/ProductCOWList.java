@@ -14,7 +14,7 @@ import java.util.List;
  * @author Vladyslav Batrachenko
  * @see Product , ProductArrayList, List
  */
-public class ProductCOWList<E extends Product> extends ProductArrayList<E> implements List<E> {
+public class ProductCOWList<E extends Product> extends ProductArrayList<E>{
 
     @Override
     public Iterator<E> iterator() {
