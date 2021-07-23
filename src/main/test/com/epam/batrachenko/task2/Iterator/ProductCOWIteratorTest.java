@@ -11,7 +11,7 @@ import java.util.Iterator;
 
 public class ProductCOWIteratorTest {
     @Test
-    public void shouldCorrectlyWorkInForEach(){
+    public void shouldCorrectlyWorkInForEachIfAddProducts(){
         ProductCOWList<Product> products=new ProductCOWList<>();
 
         products.add(0, new Product("test", new BigDecimal("10"), "uk"));
@@ -28,7 +28,7 @@ public class ProductCOWIteratorTest {
     }
 
     @Test
-    public void shouldCorrectlyCopyOnWriteIterator(){
+    public void shouldCorrectlyWorkIfRemoveProducts(){
         ProductCOWList<Product> products=new ProductCOWList<>();
 
         products.add(0, new Product("test", new BigDecimal("10"), "uk"));

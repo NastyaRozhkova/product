@@ -2,7 +2,7 @@ package com.epam.batrachenko.task2.List;
 
 import com.epam.batrachenko.task1.Entity.Product;
 import com.epam.batrachenko.task1.List.ProductArrayList;
-import com.epam.batrachenko.task2.Iterator.UnmodifiableAndModifiableProductListIterator;
+import com.epam.batrachenko.task2.Iterator.UnmodifiableModifiableProductListIterator;
 
 import java.util.*;
 
@@ -14,11 +14,11 @@ import java.util.*;
  * @author Vladyslav Batrachenko
  * @see Product, UnmodifiableProductList, ProductArrayList, List
  */
-public class UnmodifiableAndModifiableProductList<E extends Product> implements List<E> {
+public class UnmodifiableModifiableProductList<E extends Product> implements List<E> {
     private final UnmodifiableProductList<E> unmodifiableProductList;
     private final ProductArrayList<E> modifiableProductList;
 
-    public UnmodifiableAndModifiableProductList(ProductArrayList<E> unmodifiableProductList, ProductArrayList<E> modifiableProductList) {
+    public UnmodifiableModifiableProductList(ProductArrayList<E> unmodifiableProductList, ProductArrayList<E> modifiableProductList) {
         this.unmodifiableProductList = new UnmodifiableProductList<>(unmodifiableProductList);
         this.modifiableProductList = modifiableProductList;
     }
@@ -47,7 +47,7 @@ public class UnmodifiableAndModifiableProductList<E extends Product> implements 
 
     @Override
     public Iterator<E> iterator() {
-        return new UnmodifiableAndModifiableProductListIterator<>(this);
+        return new UnmodifiableModifiableProductListIterator<>(this);
     }
 
     @Override

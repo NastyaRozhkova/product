@@ -2,13 +2,13 @@ package com.epam.batrachenko.task2.Iterator;
 
 import com.epam.batrachenko.task1.Entity.Product;
 import com.epam.batrachenko.task1.List.ProductArrayList;
-import com.epam.batrachenko.task2.List.UnmodifiableAndModifiableProductList;
+import com.epam.batrachenko.task2.List.UnmodifiableModifiableProductList;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 
-public class UnmodifiableAndModifiableProductListIteratorTest {
+public class UnmodifiableModifiableProductListIteratorTest {
 
     @Test
     public void shouldCorrectlyWorkIteratorInForEach() {
@@ -22,7 +22,7 @@ public class UnmodifiableAndModifiableProductListIteratorTest {
         modifiableProducts.add(new Product("test", new BigDecimal("12"), "uk"));
         modifiableProducts.add(new Product("test", new BigDecimal("13"), "uk"));
 
-        UnmodifiableAndModifiableProductList<Product> products = new UnmodifiableAndModifiableProductList<>(unmodifiableProducts, modifiableProducts);
+        UnmodifiableModifiableProductList<Product> products = new UnmodifiableModifiableProductList<>(unmodifiableProducts, modifiableProducts);
 
         ProductArrayList<Product> newProducts = new ProductArrayList<>();
 
