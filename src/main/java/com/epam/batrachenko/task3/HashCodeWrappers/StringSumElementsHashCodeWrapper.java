@@ -1,5 +1,7 @@
 package com.epam.batrachenko.task3.HashCodeWrappers;
 
+import java.util.Objects;
+
 /**
  * String Wrapper which override hashCode.
  * HashCode computed by sum of first four chars of string.
@@ -21,5 +23,13 @@ public class StringSumElementsHashCodeWrapper {
             sum += name.charAt(i);
         }
         return sum;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StringSumElementsHashCodeWrapper that = (StringSumElementsHashCodeWrapper) o;
+        return Objects.equals(name, that.name);
     }
 }

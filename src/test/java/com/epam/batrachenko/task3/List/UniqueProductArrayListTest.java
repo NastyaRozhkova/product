@@ -69,4 +69,18 @@ public class UniqueProductArrayListTest {
 
         Assert.assertArrayEquals(new Product[]{new Product("test", new BigDecimal("10"), "uk"), new Product("test", new BigDecimal("11"), "uk")}, products.toArray());
     }
+
+    @Test
+    public void shouldCorrectReplaceAllProduct() {
+        UniqueProductArrayList<Product> products = new UniqueProductArrayList<>();
+
+        products.add(0, new Product("test", new BigDecimal("10"), "uk"));
+        products.add(1, new Product("test", new BigDecimal("11"), "uk"));
+        products.replaceAll(p -> {
+            p.setPrice(p.getPrice().add(new BigDecimal("1")));
+            return p;
+        });
+
+        Assert.assertArrayEquals(new Product[]{new Product("test", new BigDecimal("10"), "uk"), new Product("test", new BigDecimal("12"), "uk")}, products.toArray());
+    }
 }

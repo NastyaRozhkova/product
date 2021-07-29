@@ -5,6 +5,7 @@ import com.epam.batrachenko.task1.Entity.Product;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ListIterator;
+import java.util.function.UnaryOperator;
 
 /**
  * List witch extends ArrayList and store unique objects.
@@ -13,7 +14,7 @@ import java.util.ListIterator;
  * and if method "contain" return false, they are performed.
  *
  * @author Vladyslav Batrachenko
- * @see Product , ArrayList
+ * @see Product, ArrayList
  */
 public class UniqueProductArrayList<E extends Product> extends ArrayList<E> {
 
@@ -61,6 +62,15 @@ public class UniqueProductArrayList<E extends Product> extends ArrayList<E> {
             this.add(index++, temp);
         }
         return true;
+    }
+
+    @Override
+    public void replaceAll(UnaryOperator<E> operator) {
+        int index=-1;
+        for (E p: this) {
+            Product product = new Product(p.getName(),p.getPrice(),p.getCountry());
+            this.set(++index,operator.apply((E) product));
+        }
     }
 
     @Override

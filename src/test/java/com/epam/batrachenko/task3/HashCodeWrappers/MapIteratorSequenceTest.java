@@ -18,14 +18,12 @@ public class MapIteratorSequenceTest {
         map.put(new StringSumElementsHashCodeWrapper("pro6"), new Product("test", new BigDecimal("3"), "country1"));
         map.put(new StringSumElementsHashCodeWrapper("pro0"), new Product("test", new BigDecimal("1"), "country1"));
 
-        ProductArrayList<Product> products = new ProductArrayList<>();
-        for (Product el : map.values()) {
-            products.add(el);
-        }
+        StringSumElementsHashCodeWrapper[] strings = new StringSumElementsHashCodeWrapper[]{
+                new StringSumElementsHashCodeWrapper("pro0"),
+                new StringSumElementsHashCodeWrapper("pro3"),
+                new StringSumElementsHashCodeWrapper("pro6")};
 
-        Assert.assertArrayEquals(new Product[]{new Product("test", new BigDecimal("1"), "country1"),
-                new Product("test", new BigDecimal("2"), "country1"),
-                new Product("test", new BigDecimal("3"), "country1")}, products.toArray());
+        Assert.assertArrayEquals(strings, map.keySet().toArray());
     }
 
     @Test
@@ -37,15 +35,13 @@ public class MapIteratorSequenceTest {
         map.put(new StringLengthHashCodeWrapper("pro0"), new Product("test", new BigDecimal("2"), "country1"));
         map.put(new StringLengthHashCodeWrapper("pro333"), new Product("test", new BigDecimal("4"), "country1"));
 
-        ProductArrayList<Product> products = new ProductArrayList<>();
-        for (Product el : map.values()) {
-            products.add(el);
-        }
+        StringLengthHashCodeWrapper[] strings = new StringLengthHashCodeWrapper[]{
+                new StringLengthHashCodeWrapper("prof"),
+                new StringLengthHashCodeWrapper("pro0"),
+                new StringLengthHashCodeWrapper("proi2"),
+                new StringLengthHashCodeWrapper("pro333")};
 
-        Assert.assertArrayEquals(new Product[]{new Product("test", new BigDecimal("1"), "country1"),
-                new Product("test", new BigDecimal("2"), "country1"),
-                new Product("test", new BigDecimal("3"), "country1"),
-                new Product("test", new BigDecimal("4"), "country1")}, products.toArray());
+        Assert.assertArrayEquals(strings, map.keySet().toArray());
     }
 
     @Test
@@ -56,14 +52,12 @@ public class MapIteratorSequenceTest {
         map.put(new StringLengthHashCodeWrapper("proi2"), new Product("test", new BigDecimal("2"), "country1"));
         map.put(new StringLengthHashCodeWrapper("pro0"), new Product("test", new BigDecimal("3"), "country1"));
 
-        ProductArrayList<Product> products = new ProductArrayList<>();
-        for (Product el : map.values()) {
-            products.add(el);
-        }
+        StringLengthHashCodeWrapper[] strings = new StringLengthHashCodeWrapper[]{
+                new StringLengthHashCodeWrapper("prof"),
+                new StringLengthHashCodeWrapper("proi2"),
+                new StringLengthHashCodeWrapper("pro0")};
 
-        Assert.assertArrayEquals(new Product[]{new Product("test", new BigDecimal("1"), "country1"),
-                new Product("test", new BigDecimal("2"), "country1"),
-                new Product("test", new BigDecimal("3"), "country1")}, products.toArray());
+        Assert.assertArrayEquals(strings, map.keySet().toArray());
     }
 
     @Test
@@ -74,14 +68,12 @@ public class MapIteratorSequenceTest {
         map.put(new StringSumElementsHashCodeWrapper("pro6"), new Product("test", new BigDecimal("3"), "country1"));
         map.put(new StringSumElementsHashCodeWrapper("pro0"), new Product("test", new BigDecimal("1"), "country1"));
 
-        ProductArrayList<Product> products = new ProductArrayList<>();
-        for (Product el : map.values()) {
-            products.add(el);
-        }
+        StringSumElementsHashCodeWrapper[] strings = new StringSumElementsHashCodeWrapper[]{
+                new StringSumElementsHashCodeWrapper("pro3"),
+                new StringSumElementsHashCodeWrapper("pro6"),
+                new StringSumElementsHashCodeWrapper("pro0")};
 
-        Assert.assertArrayEquals(new Product[]{new Product("test", new BigDecimal("2"), "country1"),
-                new Product("test", new BigDecimal("3"), "country1"),
-                new Product("test", new BigDecimal("1"), "country1")}, products.toArray());
+        Assert.assertArrayEquals(strings, map.keySet().toArray());
 
     }
 }
