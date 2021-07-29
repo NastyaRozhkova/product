@@ -1,5 +1,11 @@
 package com.epam.batrachenko.task3.HashCodeWrappers;
 
+/**
+ * String Wrapper which override hashCode.
+ * HashCode computed by string length.
+ *
+ * @author Vladyslav Batrachenko
+ */
 public class StringLengthHashCodeWrapper {
     private final String name;
 

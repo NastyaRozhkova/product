@@ -6,6 +6,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ListIterator;
 
+/**
+ * List witch extends ArrayList and store unique objects.
+ * Object is unique if in collection there is not objects that equal it.
+ * Methods which add object or change by index, check on contains objects equals it in collection,
+ * and if method "contain" return false, they are performed.
+ *
+ * @author Vladyslav Batrachenko
+ * @see Product , ArrayList
+ */
 public class UniqueProductArrayList<E extends Product> extends ArrayList<E> {
 
     public UniqueProductArrayList() {
