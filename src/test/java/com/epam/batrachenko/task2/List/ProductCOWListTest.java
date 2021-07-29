@@ -2,6 +2,7 @@ package com.epam.batrachenko.task2.List;
 
 import com.epam.batrachenko.task1.Entity.Product;
 import com.epam.batrachenko.task1.List.ProductArrayList;
+import com.epam.batrachenko.task2.List.ProductCOWList;
 import org.junit.Assert;
 import org.junit.Test;
 

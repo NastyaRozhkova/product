@@ -1,6 +1,7 @@
 package com.epam.batrachenko.task1.List;
 
 import com.epam.batrachenko.task1.Entity.Product;
+import com.epam.batrachenko.task1.List.ProductArrayList;
 import org.junit.Assert;
 import org.junit.Test;
 
