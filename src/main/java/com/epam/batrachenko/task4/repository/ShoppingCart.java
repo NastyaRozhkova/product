@@ -1,4 +1,4 @@
-package com.epam.batrachenko.task4.Store;
+package com.epam.batrachenko.task4.repository;
 
 import com.epam.batrachenko.task1.Entity.Product;
 
@@ -18,7 +18,7 @@ import java.util.Set;
  */
 public class ShoppingCart {
 
-    private final Map<Product, Long> cart;
+    private Map<Product, Long> cart;
 
     public ShoppingCart(ShoppingCart sc) {
         this.cart = new LinkedHashMap<>(sc.cart);
@@ -40,39 +40,16 @@ public class ShoppingCart {
         cart.put(p, ++count);
     }
 
-    public void printShoppingCart() {
-        cart.forEach((k, v) -> {
-            System.out.println(k);
-            System.out.print("Count of product:");
-            System.out.println(v + "\n");
-        });
-    }
-
-    /**
-     * Make order from this shopping cart and save it in Console Store.
-     * Print in console total price of this order.
-     * In the end clear cart.
-     */
-    public void makeOrder() {
-        BigDecimal totalPrice = new BigDecimal("0");
-        for (Map.Entry<Product, Long> temp : cart.entrySet()) {
-            totalPrice = totalPrice.add(temp.getKey().getPrice().multiply(new BigDecimal(String.valueOf(temp.getValue()))));
-        }
-        ConsoleStore.getInstance().addOrder(this);
-        System.out.println("Total price of order is:" + totalPrice);
-        clearCart();
-    }
-
-    /**
-     * Print in console last five products, which was added.
-     * If products in cart less than five, print their all.
-     */
-    public void printLastFiveProducts() {
-        cart.keySet().stream().skip(cart.size() > 5 ? cart.size() - 5 : 0).forEach(System.out::println);
-    }
-
     public void clearCart() {
         this.cart.clear();
+    }
+
+    public Map<Product, Long> getCart() {
+        return cart;
+    }
+
+    public void setCart(Map<Product, Long> cart) {
+        this.cart = cart;
     }
 
     @Override
