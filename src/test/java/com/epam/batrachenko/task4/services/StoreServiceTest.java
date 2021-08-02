@@ -1,6 +1,8 @@
-package com.epam.batrachenko.task4.Store;
+package com.epam.batrachenko.task4.services;
 
 import com.epam.batrachenko.task1.Entity.Product;
+import com.epam.batrachenko.task4.repository.ConsoleStore;
+import com.epam.batrachenko.task4.repository.ShoppingCart;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -13,10 +15,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.TreeMap;
 
-public class ConsoleStoreTest {
-    private ConsoleStore store;
+public class StoreServiceTest {
+    private StoreService store;
 
     private PrintStream systemOut;
     private final ByteArrayOutputStream data = new ByteArrayOutputStream();
@@ -33,59 +34,24 @@ public class ConsoleStoreTest {
     }
 
     @Before
-    public void createStore() {
-        store = ConsoleStore.getInstance();
+    public void createAndFillStore() {
+        ConsoleStore cs = new ConsoleStore();
 
         ArrayList<Product> products = new ArrayList<>();
         products.add(new Product("prod1", new BigDecimal("1000"), "Ukraine"));
         products.add(new Product("prod2", new BigDecimal("2000"), "USA"));
 
-        store.addProducts(products);
+        cs.addProducts(products);
+        store = new StoreService(cs);
     }
 
     @Test
-    public void shouldAddProducts() {
-        ArrayList<Product> expectedProducts = new ArrayList<>(store.getProducts());
-
-        ArrayList<Product> products = new ArrayList<>();
-        products.add(new Product("prod3", new BigDecimal("500"), "Ukraine"));
-        expectedProducts.addAll(products);
-        store.addProducts(products);
-
-        Assert.assertArrayEquals(expectedProducts.toArray(), store.getProducts().toArray());
-    }
-
-    @Test
-    public void shouldPrintProducts() {
-        store.printProducts();
-
-        StringBuilder expected = new StringBuilder();
-        for (Product p : store.getProducts()) {
-            expected.append(p.toString()).append(System.lineSeparator());
-        }
-
-        Assert.assertEquals(expected.toString(), data.toString());
-    }
-
-    @Test
-    public void shouldAddOrder() {
-        TreeMap<Date, ShoppingCart> expected = new TreeMap<>(store.getOrders());
-        ShoppingCart sc = new ShoppingCart();
-
-        sc.addProduct(store.getProducts().get(0));
-        store.addOrder(sc);
-        expected.put(new Date(), new ShoppingCart(sc));
-
-        Assert.assertArrayEquals(expected.values().toArray(), store.getOrders().values().toArray());
-    }
-
-    @Test
-    public void shouldPrintOrders() throws ParseException {
+    public void shouldGetOrdersByPeriod() throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        store.printOrders(dateFormat.parse("05-05-2020"), dateFormat.parse("05-05-2022"));
+        store.getOrdersByPeriod(dateFormat.parse("05-05-2020"), dateFormat.parse("05-05-2022"));
 
         StringBuilder expected = new StringBuilder();
-        for (ShoppingCart p : store.getOrders().values()) {
+        for (ShoppingCart p : store.getStore().getOrders().values()) {
             expected.append(p.toString()).append(System.lineSeparator());
         }
 
@@ -106,7 +72,7 @@ public class ConsoleStoreTest {
 
     @Test
     public void shouldGetFirstOrderSortedByDate() throws InterruptedException {
-        ShoppingCart sc = new ShoppingCart();
+        CartService sc = new CartService(new ShoppingCart(), store.getStore());
         sc.addProduct(store.getProducts().get(0));
 
         Date date = new Date();
@@ -116,6 +82,6 @@ public class ConsoleStoreTest {
         sc.makeOrder();
         sc.addProduct(store.getProducts().get(0));
 
-        Assert.assertEquals(sc, store.getFirstOrderSortedByDate(date).get().getValue());
+        Assert.assertEquals(sc.getShoppingCart(), store.getFirstOrderSortedByDate(date).get().getValue());
     }
 }
