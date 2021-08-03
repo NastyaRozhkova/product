@@ -8,7 +8,7 @@ import com.epam.batrachenko.task4.util.Constants;
 import java.util.Optional;
 import java.util.Scanner;
 
-public class AddProduct extends Command {
+public class AddProductCommand extends Command {
     @Override
     public boolean execute(StoreService store, CartService cart) {
         System.out.println(Constants.INPUT_PRODUCT_NAME);

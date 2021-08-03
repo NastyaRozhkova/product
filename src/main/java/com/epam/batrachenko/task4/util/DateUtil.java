@@ -5,6 +5,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
+/**
+ * Contain static method for getting Date in format "dd-MM-yyyy" from console.
+ *
+ * @author Vladyslav Batrachenko
+ * @see SimpleDateFormat,Date
+ */
 public class DateUtil {
     public static Date inputDate() throws Exception {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -25,5 +31,9 @@ public class DateUtil {
             }
         }
         return date;
+    }
+
+    public static int compareTwoDateByThird(Date d1, Date d2, Date d3) {
+        return (int) (Math.abs(d1.getTime() - d3.getTime()) - Math.abs(d2.getTime() - d3.getTime()));
     }
 }

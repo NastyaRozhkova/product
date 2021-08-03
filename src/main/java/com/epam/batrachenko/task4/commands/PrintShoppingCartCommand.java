@@ -3,17 +3,19 @@ package com.epam.batrachenko.task4.commands;
 import com.epam.batrachenko.task4.services.CartService;
 import com.epam.batrachenko.task4.services.StoreService;
 
-import static com.epam.batrachenko.task4.util.Constants.EXIT;
-
-public class Exit extends Command {
+public class PrintShoppingCartCommand extends Command {
     @Override
     public boolean execute(StoreService store, CartService cart) {
-        System.out.println(EXIT);
+        cart.getShoppingCartProducts().forEach((k, v) -> {
+            System.out.println(k);
+            System.out.print("Count of product:");
+            System.out.println(v + System.lineSeparator());
+        });
         return true;
     }
 
     @Override
     public String toString() {
-        return EXIT;
+        return "Print Shopping Cart";
     }
 }

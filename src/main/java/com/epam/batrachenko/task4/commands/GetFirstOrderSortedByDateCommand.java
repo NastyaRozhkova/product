@@ -1,35 +1,32 @@
 package com.epam.batrachenko.task4.commands;
 
+import com.epam.batrachenko.task4.repository.ShoppingCartRepository;
 import com.epam.batrachenko.task4.services.CartService;
 import com.epam.batrachenko.task4.services.StoreService;
 import com.epam.batrachenko.task4.util.Constants;
 import com.epam.batrachenko.task4.util.DateUtil;
 
 import java.util.Date;
+import java.util.Map;
+import java.util.Optional;
 
-public class FindOrdersByPeriod extends Command {
+public class GetFirstOrderSortedByDateCommand extends Command {
     @Override
     public boolean execute(StoreService store, CartService cart) {
         System.out.println(Constants.INPUT_DATE_START);
-        Date start;
+        Date date;
         try {
-            start = DateUtil.inputDate();
+            date = DateUtil.inputDate();
         } catch (Exception e) {
             return false;
         }
-        System.out.println(Constants.INPUT_DATE_END);
-        Date end;
-        try {
-            end = DateUtil.inputDate();
-        } catch (Exception e) {
-            return false;
-        }
-        store.getOrdersByPeriod(start, end).forEach(System.out::println);
+        Optional<Map.Entry<Date, ShoppingCartRepository>> order = store.getFirstOrderSortedByDate(date);
+        order.ifPresent(System.out::println);
         return true;
     }
 
     @Override
     public String toString() {
-        return "Find Orders By Period";
+        return "Get First Order Sorted By Date";
     }
 }

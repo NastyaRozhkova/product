@@ -2,7 +2,6 @@ package com.epam.batrachenko.task4.repository;
 
 import com.epam.batrachenko.task1.Entity.Product;
 
-import java.math.BigDecimal;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -16,15 +15,15 @@ import java.util.Set;
  * @author Vladyslav Batrachenko
  * @see Product, Map
  */
-public class ShoppingCart {
+public class ShoppingCartRepository {
 
     private Map<Product, Long> cart;
 
-    public ShoppingCart(ShoppingCart sc) {
+    public ShoppingCartRepository(ShoppingCartRepository sc) {
         this.cart = new LinkedHashMap<>(sc.cart);
     }
 
-    public ShoppingCart() {
+    public ShoppingCartRepository() {
         cart = new LinkedHashMap<>();
     }
 
@@ -56,7 +55,7 @@ public class ShoppingCart {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ShoppingCart that = (ShoppingCart) o;
+        ShoppingCartRepository that = (ShoppingCartRepository) o;
         return Objects.equals(cart, that.cart);
     }
 

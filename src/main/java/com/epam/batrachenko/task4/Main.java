@@ -5,8 +5,8 @@ import com.epam.batrachenko.task1.Entity.ComputerPart;
 import com.epam.batrachenko.task1.Entity.GraphicsCard;
 import com.epam.batrachenko.task1.Entity.Product;
 import com.epam.batrachenko.task4.commands.CommandContainer;
-import com.epam.batrachenko.task4.repository.ConsoleStore;
-import com.epam.batrachenko.task4.repository.ShoppingCart;
+import com.epam.batrachenko.task4.repository.ConsoleStoreRepository;
+import com.epam.batrachenko.task4.repository.ShoppingCartRepository;
 import com.epam.batrachenko.task4.services.CartService;
 import com.epam.batrachenko.task4.services.StoreService;
 import com.epam.batrachenko.task4.util.Constants;
@@ -20,14 +20,14 @@ public class Main {
     private final static CartService sc;
 
     static {
-        ConsoleStore st = new ConsoleStore();
+        ConsoleStoreRepository st = new ConsoleStoreRepository();
         fillStore(st);
         store = new StoreService(st);
-        sc = new CartService(new ShoppingCart(), st);
+        sc = new CartService(new ShoppingCartRepository(), st);
     }
 
     public static void main(String... args) {
-        int code = 1;
+        int code = -1;
         Scanner scanner = new Scanner(System.in);
         while (code != 0) {
             printMenu();
@@ -36,7 +36,7 @@ public class Main {
         }
     }
 
-    public static void fillStore(ConsoleStore store) {
+    public static void fillStore(ConsoleStoreRepository store) {
         ArrayList<Product> products = new ArrayList<>();
         products.add(new Product("AsusNt32", new BigDecimal("1000"), "Ukraine"));
         products.add(new Accessories("logitech g102", new BigDecimal("2000"), "USA", "game mouse", "logitech"));

@@ -1,8 +1,8 @@
 package com.epam.batrachenko.task4.services;
 
 import com.epam.batrachenko.task1.Entity.Product;
-import com.epam.batrachenko.task4.repository.ConsoleStore;
-import com.epam.batrachenko.task4.repository.ShoppingCart;
+import com.epam.batrachenko.task4.repository.ConsoleStoreRepository;
+import com.epam.batrachenko.task4.repository.ShoppingCartRepository;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -35,7 +35,7 @@ public class StoreServiceTest {
 
     @Before
     public void createAndFillStore() {
-        ConsoleStore cs = new ConsoleStore();
+        ConsoleStoreRepository cs = new ConsoleStoreRepository();
 
         ArrayList<Product> products = new ArrayList<>();
         products.add(new Product("prod1", new BigDecimal("1000"), "Ukraine"));
@@ -51,7 +51,7 @@ public class StoreServiceTest {
         store.getOrdersByPeriod(dateFormat.parse("05-05-2020"), dateFormat.parse("05-05-2022"));
 
         StringBuilder expected = new StringBuilder();
-        for (ShoppingCart p : store.getStore().getOrders().values()) {
+        for (ShoppingCartRepository p : store.getStore().getOrders().values()) {
             expected.append(p.toString()).append(System.lineSeparator());
         }
 
@@ -72,7 +72,7 @@ public class StoreServiceTest {
 
     @Test
     public void shouldGetFirstOrderSortedByDate() throws InterruptedException {
-        CartService sc = new CartService(new ShoppingCart(), store.getStore());
+        CartService sc = new CartService(new ShoppingCartRepository(), store.getStore());
         sc.addProduct(store.getProducts().get(0));
 
         Date date = new Date();

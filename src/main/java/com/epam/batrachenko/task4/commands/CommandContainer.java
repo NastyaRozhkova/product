@@ -7,15 +7,16 @@ public class CommandContainer {
     private static Map<Integer, Command> commands = new TreeMap<>();
 
     static {
-        commands.put(0, new Exit());
-        commands.put(1, new AddProduct());
-        commands.put(2, new FindOrdersByPeriod());
-        commands.put(3,new GetFirstOrderSortedByDate());
-        commands.put(4,new MakeOrder());
-        commands.put(5, new PrintLastFiveProducts());
-        commands.put(6,new PrintStoreProducts());
-        commands.put(7,new PrintShoppingCart());
+        commands.put(0, new ExitCommand());
+        commands.put(1, new AddProductCommand());
+        commands.put(2, new FindOrdersByPeriodCommand());
+        commands.put(3, new GetFirstOrderSortedByDateCommand());
+        commands.put(4, new MakeOrderCommand());
+        commands.put(5, new PrintLastFiveProductsCommand());
+        commands.put(6, new PrintStoreProductsCommand());
+        commands.put(7, new PrintShoppingCartCommand());
     }
+
     public static Command get(int code) {
         if (!commands.containsKey(code)) {
             return new ErrorCommand();

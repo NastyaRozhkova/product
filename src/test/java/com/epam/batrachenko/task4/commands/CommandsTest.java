@@ -1,8 +1,8 @@
 package com.epam.batrachenko.task4.commands;
 
 import com.epam.batrachenko.task1.Entity.Product;
-import com.epam.batrachenko.task4.repository.ConsoleStore;
-import com.epam.batrachenko.task4.repository.ShoppingCart;
+import com.epam.batrachenko.task4.repository.ConsoleStoreRepository;
+import com.epam.batrachenko.task4.repository.ShoppingCartRepository;
 import com.epam.batrachenko.task4.services.CartService;
 import com.epam.batrachenko.task4.services.StoreService;
 import org.junit.After;
@@ -33,7 +33,7 @@ public class CommandsTest {
 
     @Before
     public void createAndFillStore() {
-        ConsoleStore cs = new ConsoleStore();
+        ConsoleStoreRepository cs = new ConsoleStoreRepository();
 
         ArrayList<Product> products = new ArrayList<>();
         products.add(new Product("prod1", new BigDecimal("1000"), "Ukraine"));
@@ -45,8 +45,8 @@ public class CommandsTest {
 
     @Test
     public void shouldPrintShoppingCart() {
-        Command command = new PrintShoppingCart();
-        ShoppingCart sc = new ShoppingCart();
+        Command command = new PrintShoppingCartCommand();
+        ShoppingCartRepository sc = new ShoppingCartRepository();
         sc.addProduct(new Product("test", new BigDecimal("10"), "country"));
         sc.addProduct(new Product("test2", new BigDecimal("11"), "country"));
 
@@ -66,8 +66,8 @@ public class CommandsTest {
 
     @Test
     public void shouldPrintStoreProducts() {
-        Command command = new PrintStoreProducts();
-        ShoppingCart sc = new ShoppingCart();
+        Command command = new PrintStoreProductsCommand();
+        ShoppingCartRepository sc = new ShoppingCartRepository();
 
         command.execute(store, new CartService(sc, store.getStore()));
 

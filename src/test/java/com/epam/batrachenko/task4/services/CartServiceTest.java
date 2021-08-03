@@ -1,8 +1,8 @@
 package com.epam.batrachenko.task4.services;
 
 import com.epam.batrachenko.task1.Entity.Product;
-import com.epam.batrachenko.task4.repository.ConsoleStore;
-import com.epam.batrachenko.task4.repository.ShoppingCart;
+import com.epam.batrachenko.task4.repository.ConsoleStoreRepository;
+import com.epam.batrachenko.task4.repository.ShoppingCartRepository;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -31,7 +31,7 @@ public class CartServiceTest {
 
     @Test
     public void shouldAddProduct() {
-        ShoppingCart sc = new ShoppingCart();
+        ShoppingCartRepository sc = new ShoppingCartRepository();
         sc.addProduct(new Product("test", new BigDecimal("10"), "country"));
 
         Assert.assertArrayEquals(new Product[]{new Product("test", new BigDecimal("10"), "country")},
@@ -40,8 +40,8 @@ public class CartServiceTest {
 
     @Test
     public void shouldMakeOrder() {
-        ConsoleStore store = new ConsoleStore();
-        CartService sc = new CartService(new ShoppingCart(), store);
+        ConsoleStoreRepository store = new ConsoleStoreRepository();
+        CartService sc = new CartService(new ShoppingCartRepository(), store);
         sc.addProduct(new Product("test", new BigDecimal("10"), "country"));
         sc.addProduct(new Product("test2", new BigDecimal("11"), "country"));
 
@@ -49,7 +49,7 @@ public class CartServiceTest {
 
         sc.addProduct(new Product("test", new BigDecimal("10"), "country"));
         sc.addProduct(new Product("test2", new BigDecimal("11"), "country"));
-        List<ShoppingCart> expected = new ArrayList<>();
+        List<ShoppingCartRepository> expected = new ArrayList<>();
         expected.add(sc.getShoppingCart());
 
         Assert.assertArrayEquals(expected.toArray(), store.getOrders().values().toArray());
@@ -59,7 +59,7 @@ public class CartServiceTest {
 
     @Test
     public void shouldClearCart() {
-        ShoppingCart sc = new ShoppingCart();
+        ShoppingCartRepository sc = new ShoppingCartRepository();
         sc.addProduct(new Product("test", new BigDecimal("10"), "country"));
 
         sc.clearCart();
@@ -69,7 +69,7 @@ public class CartServiceTest {
 
     @Test
     public void shouldPrintLastFiveProductsIfSizeLessThanFive() {
-        CartService cart=new CartService(new ShoppingCart(),new ConsoleStore());
+        CartService cart=new CartService(new ShoppingCartRepository(),new ConsoleStoreRepository());
         cart.addProduct(new Product("test", new BigDecimal("10"), "country"));
 
         cart.getLastFiveProducts().forEach(System.out::println);
@@ -81,7 +81,7 @@ public class CartServiceTest {
 
     @Test
     public void shouldPrintLastFiveProducts() {
-        CartService cart=new CartService(new ShoppingCart(),new ConsoleStore());
+        CartService cart=new CartService(new ShoppingCartRepository(),new ConsoleStoreRepository());
         cart.addProduct(new Product("test1", new BigDecimal("10"), "country"));
         cart.addProduct(new Product("test2", new BigDecimal("10"), "country"));
         cart.addProduct(new Product("test3", new BigDecimal("10"), "country"));

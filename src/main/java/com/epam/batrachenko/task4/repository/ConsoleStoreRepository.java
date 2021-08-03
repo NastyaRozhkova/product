@@ -15,24 +15,20 @@ import java.util.TreeMap;
  * @author Vladyslav Batrachenko
  * @see Product, ShoppingCart, TreeMap
  */
-public class ConsoleStore {
+public class ConsoleStoreRepository {
 
     private List<Product> products;
-    private TreeMap<Date, ShoppingCart> orders;
+    private TreeMap<Date, ShoppingCartRepository> orders;
 
     public void setProducts(List<Product> products) {
         this.products = products;
-    }
-
-    public void setOrders(TreeMap<Date, ShoppingCart> orders) {
-        this.orders = orders;
     }
 
     public List<Product> getProducts() {
         return products;
     }
 
-    public TreeMap<Date, ShoppingCart> getOrders() {
+    public TreeMap<Date, ShoppingCartRepository> getOrders() {
         return orders;
     }
 
@@ -40,12 +36,12 @@ public class ConsoleStore {
         this.products.addAll(products);
     }
 
-    public ConsoleStore() {
+    public ConsoleStoreRepository() {
         this.orders = new TreeMap<>();
         this.products = new ArrayList<>();
     }
 
-    public void addOrder(ShoppingCart sc) {
-        orders.put(new Date(), new ShoppingCart(sc));
+    public void addOrder(ShoppingCartRepository sc) {
+        orders.put(new Date(), new ShoppingCartRepository(sc));
     }
 }
