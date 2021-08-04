@@ -6,7 +6,7 @@ import com.epam.batrachenko.task4.services.StoreService;
 public class MakeOrderCommand extends Command {
     @Override
     public boolean execute(StoreService store, CartService cart) {
-        System.out.println(cart.makeOrder());
+        System.out.println("Total price:" + cart.makeOrder());
         return true;
     }
 

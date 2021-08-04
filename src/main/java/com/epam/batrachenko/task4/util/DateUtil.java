@@ -12,7 +12,7 @@ import java.util.Scanner;
  * @see SimpleDateFormat,Date
  */
 public class DateUtil {
-    public static Date inputDate() throws Exception {
+    public static Date inputDate() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         boolean flag = true;
         Date date = null;
@@ -20,14 +20,10 @@ public class DateUtil {
         Scanner scanner = new Scanner(System.in);
         while (flag) {
             try {
-                input = scanner.nextLine();
-                if (input.equals("0")) {
-                    throw new Exception("Exit");
-                }
                 date = dateFormat.parse(scanner.nextLine());
                 flag = false;
             } catch (ParseException e) {
-                System.out.println("Incorrect data value! Input again or input 0 for exit");
+                System.out.println("Incorrect data value! Input again in format dd-MM-yyyy");
             }
         }
         return date;
