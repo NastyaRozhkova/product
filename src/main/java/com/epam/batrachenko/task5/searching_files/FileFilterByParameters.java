@@ -5,7 +5,9 @@ import com.epam.batrachenko.task5.util.Parameter;
 import com.epam.batrachenko.task5.util.ParameterFilterContainer;
 
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 
 /**
@@ -21,9 +23,23 @@ public class FileFilterByParameters {
     }
 
     public List<File> search(String path) {
-        List<File> files = Arrays.asList(Objects.requireNonNull(new File(path).listFiles()));
+        List<File> files = getAllFiles(path);
         linkParameters();
         return parameters.get(0).handlerManager(files);
+    }
+
+    public List<File> getAllFiles(String path) {
+        List<File> files = new ArrayList<>();
+        File[] newFiles = new File(path).listFiles();
+        assert newFiles != null;
+        for (File file : newFiles) {
+            if (file.isDirectory()) {
+                files.addAll(getAllFiles(file.getAbsolutePath()));
+            } else {
+                files.add(file);
+            }
+        }
+        return files;
     }
 
     public void linkParameters() {
@@ -33,10 +49,8 @@ public class FileFilterByParameters {
     }
 
     public void addParameters(Map<Parameter, String> map) {
-        Map<Parameter, Function<String, FileParameterFilter>> filters = ParameterFilterContainer.getParameters();
-        map.forEach((k, v) -> {
-            parameters.add(filters.get(k).apply(v));
-        });
+        Map<Parameter, Function<String, FileParameterFilter>> filters = new ParameterFilterContainer().getParameters();
+        map.forEach((k, v) -> parameters.add(filters.get(k).apply(v)));
     }
 
 }

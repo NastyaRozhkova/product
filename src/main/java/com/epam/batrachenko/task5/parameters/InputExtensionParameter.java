@@ -4,15 +4,19 @@ import com.epam.batrachenko.task5.util.Parameter;
 
 import java.util.Map;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class InputExtensionParameter implements InputParameter {
+    private static final Logger log = Logger.getLogger(InputExtensionParameter.class.getName());
+
     @Override
     public void execute(Map<Parameter, String> parameters) {
-        System.out.println("Search by file extension? Input 1");
+        log.log(Level.INFO,"Search by file extension? Input 1");
         Scanner sc = new Scanner(System.in);
         int find = sc.nextInt();
         if (find == 1) {
-            System.out.println("Input file extension");
+            log.log(Level.INFO,"Input file extension");
             sc.nextLine();
             parameters.put(Parameter.EXTENSION, sc.nextLine());
         }

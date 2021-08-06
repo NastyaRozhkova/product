@@ -7,16 +7,16 @@ import java.util.Map;
 import java.util.function.Function;
 
 public class ParameterFilterContainer {
-    private static Map<Parameter, Function<String, FileParameterFilter>> parameterFilters = new HashMap<>();
+    private Map<Parameter, Function<String, FileParameterFilter>> parameterFilters = new HashMap<>();
 
-    static {
+    public ParameterFilterContainer() {
         parameterFilters.put(Parameter.NAME, FileNameFilter::new);
         parameterFilters.put(Parameter.EXTENSION, FileExtensionFilter::new);
         parameterFilters.put(Parameter.SIZE, FileSizeFilter::new);
         parameterFilters.put(Parameter.DATE, FileDateFilter::new);
     }
 
-    public static Map<Parameter, Function<String, FileParameterFilter>> getParameters() {
+    public Map<Parameter, Function<String, FileParameterFilter>> getParameters() {
         return parameterFilters;
     }
 }

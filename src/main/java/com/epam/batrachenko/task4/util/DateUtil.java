@@ -14,19 +14,31 @@ import java.util.Scanner;
 public class DateUtil {
     public static Date inputDate() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = null;
+        try {
+            date = dateFormat.parse(inputDateInString());
+        } catch (ParseException e) {
+            System.out.println("Incorrect data value! Input again in format dd-MM-yyyy");
+        }
+        return date;
+    }
+
+    public static String inputDateInString() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         boolean flag = true;
         Date date = null;
-        String input;
+        String dateLine = null;
         Scanner scanner = new Scanner(System.in);
         while (flag) {
             try {
-                date = dateFormat.parse(scanner.nextLine());
+                dateLine = scanner.nextLine();
+                date = dateFormat.parse(dateLine);
                 flag = false;
             } catch (ParseException e) {
                 System.out.println("Incorrect data value! Input again in format dd-MM-yyyy");
             }
         }
-        return date;
+        return dateLine;
     }
 
     public static int compareTwoDateByThird(Date d1, Date d2, Date d3) {
