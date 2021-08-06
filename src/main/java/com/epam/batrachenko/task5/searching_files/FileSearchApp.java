@@ -2,7 +2,7 @@ package com.epam.batrachenko.task5.searching_files;
 
 import com.epam.batrachenko.task5.parameters.InputParameter;
 import com.epam.batrachenko.task5.util.Parameter;
-import com.epam.batrachenko.task5.util.ParametersContainer;
+import com.epam.batrachenko.task5.container.ParametersContainer;
 
 import java.io.File;
 import java.util.LinkedHashMap;

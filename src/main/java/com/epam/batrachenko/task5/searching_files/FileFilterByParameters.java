@@ -2,7 +2,7 @@ package com.epam.batrachenko.task5.searching_files;
 
 import com.epam.batrachenko.task5.chain.FileParameterFilter;
 import com.epam.batrachenko.task5.util.Parameter;
-import com.epam.batrachenko.task5.util.ParameterFilterContainer;
+import com.epam.batrachenko.task5.container.ParameterFilterContainer;
 
 import java.io.File;
 import java.util.ArrayList;
