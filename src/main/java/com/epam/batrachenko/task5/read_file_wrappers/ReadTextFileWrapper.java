@@ -1,12 +1,15 @@
 package com.epam.batrachenko.task5.read_file_wrappers;
 
-import com.epam.batrachenko.task5.parameters.InputSizeParameter;
+import com.sun.org.slf4j.internal.Logger;
+import com.sun.org.slf4j.internal.LoggerFactory;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.Closeable;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.RandomAccessFile;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Wrapper for read text from file.
@@ -17,13 +20,13 @@ import java.util.logging.Logger;
  */
 public class ReadTextFileWrapper implements Iterable<String>, Closeable {
     private RandomAccessFile sc;
-    private static final Logger log = Logger.getLogger(ReadTextFileWrapper.class.getName());
+    private static final Logger log = LoggerFactory.getLogger(ReadTextFileWrapper.class);
 
     public ReadTextFileWrapper(String fileName) {
         try {
             sc = new RandomAccessFile(new File(fileName), "r");
         } catch (FileNotFoundException e) {
-            log.log(Level.WARNING,"File with this name was not found!",e);
+            log.error("File with this name was not found!", e);
         }
     }
 
@@ -60,7 +63,7 @@ public class ReadTextFileWrapper implements Iterable<String>, Closeable {
                 try {
                     line = sc.readLine();
                 } catch (IOException e) {
-                   log.log(Level.WARNING,"",e);
+                    log.error("Line not found", e);
                 }
                 return temp;
             }
