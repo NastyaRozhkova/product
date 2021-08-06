@@ -1,13 +1,13 @@
-package com.epam.batrachenko.task5.chain_file_search;
+package com.epam.batrachenko.task5.chain;
 
 import java.io.File;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class FileExtensionConstraint extends FileParameterHandler {
+public class FileExtensionFilter extends FileParameterFilter {
     private String extension;
 
-    public FileExtensionConstraint(String extension) {
+    public FileExtensionFilter(String extension) {
         this.extension = extension;
     }
 

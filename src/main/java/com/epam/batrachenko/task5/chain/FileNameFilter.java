@@ -1,13 +1,13 @@
-package com.epam.batrachenko.task5.chain_file_search;
+package com.epam.batrachenko.task5.chain;
 
 import java.io.File;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class FileNameConstraint extends FileParameterHandler {
+public class FileNameFilter extends FileParameterFilter {
     private String name;
 
-    public FileNameConstraint(String name) {
+    public FileNameFilter(String name) {
         this.name = name;
     }
 

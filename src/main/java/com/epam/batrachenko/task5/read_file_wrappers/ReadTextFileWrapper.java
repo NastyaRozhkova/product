@@ -1,7 +1,5 @@
 package com.epam.batrachenko.task5.read_file_wrappers;
 
-import com.epam.batrachenko.task5.chain_file_search.FileParameterHandler;
-
 import java.io.*;
 import java.util.Iterator;
 import java.util.NoSuchElementException;

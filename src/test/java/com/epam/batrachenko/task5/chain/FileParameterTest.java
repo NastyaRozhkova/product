@@ -1,5 +1,7 @@
-package com.epam.batrachenko.task5.chain_file_search;
+package com.epam.batrachenko.task5.chain;
 
+import com.epam.batrachenko.task5.searching_files.FileFilterByParameters;
+import com.epam.batrachenko.task5.util.Parameter;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,7 +14,9 @@ import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FileParameterTest {
     private List<File> files = new ArrayList<>();
@@ -71,7 +75,7 @@ public class FileParameterTest {
 
     @Test
     public void shouldCorrectlyFilterByName() {
-        FileNameConstraint constraint = new FileNameConstraint("a.");
+        FileNameFilter constraint = new FileNameFilter("a.");
 
         List<File> actualFiles = constraint.handle(files);
         File[] expected = new File[]{new File("testDirectory/a.txt"), new File("testDirectory/a.exe")};
@@ -81,7 +85,7 @@ public class FileParameterTest {
 
     @Test
     public void shouldCorrectlyFilterByExtension() {
-        FileExtensionConstraint constraint = new FileExtensionConstraint("exe");
+        FileExtensionFilter constraint = new FileExtensionFilter("exe");
 
         List<File> actualFiles = constraint.handle(files);
         File[] expected = new File[]{new File("testDirectory/a.exe"), new File("testDirectory/b.exe")};
@@ -91,7 +95,7 @@ public class FileParameterTest {
 
     @Test
     public void shouldCorrectlyFilterBySize() {
-        FileSizeConstraint constraint = new FileSizeConstraint(20, 100);
+        FileSizeFilter constraint = new FileSizeFilter(20, 100);
 
         List<File> actualFiles = constraint.handle(files);
         File[] expected = new File[]{new File("testDirectory/d.asa")};
@@ -103,7 +107,7 @@ public class FileParameterTest {
     public void shouldCorrectlyFilterByDate() throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
-        FileDateConstraint constraint = new FileDateConstraint(dateFormat.parse("04-05-2020"), dateFormat.parse("06-05-2020"));
+        FileDateFilter constraint = new FileDateFilter(dateFormat.parse("04-05-2020"), dateFormat.parse("06-05-2020"));
 
         List<File> actualFiles = constraint.handle(files);
         File[] expected = new File[]{new File("testDirectory/c.asa")};
@@ -114,14 +118,16 @@ public class FileParameterTest {
     @Test
     public void shouldCorrectlyChainFilter() throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        FileSearch fileSearch = new FileSearch();
+        Map<Parameter, String> parameters = new LinkedHashMap<>();
 
-        fileSearch.add(new FileNameConstraint("c."));
-        fileSearch.add(new FileExtensionConstraint("asa"));
-        fileSearch.add(new FileSizeConstraint(0, 10));
-        fileSearch.add(new FileDateConstraint(dateFormat.parse("04-05-2020"), dateFormat.parse("06-05-2020")));
+        parameters.put(Parameter.NAME, "c.");
+        parameters.put(Parameter.EXTENSION, "asa");
+        parameters.put(Parameter.SIZE, "0/10");
+        parameters.put(Parameter.DATE, "04-05-2020/06-05-2020");
 
-        List<File> actualFiles = fileSearch.search("testDirectory");
+        FileFilterByParameters fileFilterByParameters = new FileFilterByParameters();
+        fileFilterByParameters.addParameters(parameters);
+        List<File> actualFiles = fileFilterByParameters.search("testDirectory");
         File[] expected = new File[]{new File("testDirectory/c.asa")};
 
         Assert.assertArrayEquals(expected, actualFiles.toArray());

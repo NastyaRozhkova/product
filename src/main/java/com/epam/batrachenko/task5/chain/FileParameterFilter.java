@@ -1,14 +1,14 @@
-package com.epam.batrachenko.task5.chain_file_search;
+package com.epam.batrachenko.task5.chain;
 
 import java.io.File;
 import java.util.List;
 
-public abstract class FileParameterHandler {
-    private FileParameterHandler nextHandler;
+public abstract class FileParameterFilter {
+    private FileParameterFilter nextHandler;
 
     public abstract List<File> handle(List<File> files);
 
-    public void setNextHandler(FileParameterHandler nextHandler) {
+    public void setNextHandler(FileParameterFilter nextHandler) {
         this.nextHandler = nextHandler;
     }
 
