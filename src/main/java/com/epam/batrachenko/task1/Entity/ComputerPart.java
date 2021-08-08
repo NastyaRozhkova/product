@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public class ComputerPart extends Product {
-    private String category;
-    private String purpose;
+    protected String category;
+    protected String purpose;
 
     public ComputerPart() {
     }
@@ -32,8 +32,15 @@ public class ComputerPart extends Product {
         this.purpose = purpose;
     }
 
+    @Override
     public String toString() {
-        return "ComputerParts{category='" + this.category + "', purpose='" + this.purpose + "'}";
+        return "ComputerPart{" +
+                "name='" + name + '\'' +
+                ", price='" + price +'\'' +
+                ", country='" + country + '\'' +
+                ", category='" + category + '\'' +
+                ", purpose='" + purpose + '\'' +
+                '}';
     }
 
     @Override

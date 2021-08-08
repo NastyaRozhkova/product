@@ -31,8 +31,15 @@ public class Accessories extends Product {
         this.brand = brand;
     }
 
+    @Override
     public String toString() {
-        return "Accessories{type='" + this.type + "', brand='" + this.brand + "'}";
+        return "Accessories{" +
+                "name='" + name + '\'' +
+                ", price='" + price +'\'' +
+                ", country='" + country + '\'' +
+                ", type='" + type + '\'' +
+                ", brand='" + brand + '\'' +
+                '}';
     }
 
     @Override

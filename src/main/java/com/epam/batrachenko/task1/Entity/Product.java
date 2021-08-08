@@ -1,12 +1,13 @@
 package com.epam.batrachenko.task1.Entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class Product {
-    private String name;
-    private BigDecimal price;
-    private String country;
+public class Product implements Serializable {
+    protected String name;
+    protected BigDecimal price;
+    protected String country;
 
     public Product() {
     }
@@ -42,7 +43,7 @@ public class Product {
     }
 
     public String toString() {
-        return "Product{name='" + this.name + "', price=" + this.price + ", country='" + this.country + "'}";
+        return "Product{name='" + this.name + "', price='" + this.price + "', country='" + this.country + "'}";
     }
 
     @Override

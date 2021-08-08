@@ -42,8 +42,18 @@ public class GraphicsCard extends ComputerPart {
         this.connector = connector;
     }
 
+    @Override
     public String toString() {
-        return "GraphicsCard{memory=" + this.memory + ", memoryType='" + this.memoryType + "', connector='" + this.connector + "'}";
+        return "GraphicsCard{" +
+                "name='" + name + '\'' +
+                ", price='" + price +'\'' +
+                ", country='" + country + '\'' +
+                ", category='" + category + '\'' +
+                ", purpose='" + purpose + '\'' +
+                ", memory='" + memory +'\'' +
+                ", memoryType='" + memoryType + '\'' +
+                ", connector='" + connector + '\'' +
+                '}';
     }
 
     @Override
