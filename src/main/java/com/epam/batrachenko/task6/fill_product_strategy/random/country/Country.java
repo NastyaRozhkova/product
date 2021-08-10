@@ -1,4 +1,4 @@
-package com.epam.batrachenko.task6.enums;
+package com.epam.batrachenko.task6.fill_product_strategy.random.country;
 
 public enum Country {
     AUSTRALIA,

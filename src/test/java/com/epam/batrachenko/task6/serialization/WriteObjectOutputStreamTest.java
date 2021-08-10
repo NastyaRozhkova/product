@@ -2,7 +2,7 @@ package com.epam.batrachenko.task6.serialization;
 
 import com.epam.batrachenko.task1.Entity.Product;
 import com.epam.batrachenko.task6.AddingProductsToCatalog;
-import com.epam.batrachenko.task6.fill_product_strategy.GenerateProductData;
+import com.epam.batrachenko.task6.fill_product_strategy.random.GenerateProductDataStrategy;
 import com.sun.org.slf4j.internal.Logger;
 import com.sun.org.slf4j.internal.LoggerFactory;
 import org.junit.Test;
@@ -21,13 +21,13 @@ public class WriteObjectOutputStreamTest {
 
     @Test
     public void writeSerializationInGZipFormat() {
-        List<Product> products = (new GenerateProductData()).fill(COUNT);
+        List<Product> products = (new GenerateProductDataStrategy()).fill(COUNT);
         compressGzipFile(products, "serializationGZip.txt");
     }
 
     @Test
     public void writeSerialization() throws IOException {
-        List<Product> products = (new GenerateProductData()).fill(COUNT);
+        List<Product> products = (new GenerateProductDataStrategy()).fill(COUNT);
         File file = new File("serialization.txt");
         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
         for (Product product : products) {

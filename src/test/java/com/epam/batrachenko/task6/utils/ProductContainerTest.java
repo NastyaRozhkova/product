@@ -2,6 +2,7 @@ package com.epam.batrachenko.task6.utils;
 
 import com.epam.batrachenko.task1.Entity.Product;
 import com.epam.batrachenko.task5.read_file_wrappers.ReadTextFileWrapper;
+import com.epam.batrachenko.task6.file_handler.ProductContainerFilesHandler;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -15,7 +16,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductContainerUtilTest {
+public class ProductContainerTest {
     private File file;
 
     @Before
@@ -34,7 +35,7 @@ public class ProductContainerUtilTest {
 
     @Test
     public void shouldLoadDataFromFile() throws IOException {
-        List<Product> actual = ProductContainerUtil.load("serializationTest.txt");
+        List<Product> actual = new ProductContainerFilesHandler().load("serializationTest.txt");
         Product[] expected = new Product[]{new Product("productTest", new BigDecimal("10"), "test")};
         Assert.assertArrayEquals(expected, actual.toArray());
     }
@@ -43,7 +44,7 @@ public class ProductContainerUtilTest {
     public void shouldSaveDataToFile() throws IOException {
         List<Product> products = new ArrayList<>();
         products.add(new Product("productTest2", new BigDecimal("10"), "test"));
-        ProductContainerUtil.save(products, "serializationTest.txt");
+        new ProductContainerFilesHandler().save(products, "serializationTest.txt");
 
         StringBuilder actual = new StringBuilder();
         try (ReadTextFileWrapper file = new ReadTextFileWrapper("serializationTest.txt")) {

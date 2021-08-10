@@ -1,6 +1,7 @@
-package com.epam.batrachenko.task6.utils;
+package com.epam.batrachenko.task6.file_handler;
 
 import com.epam.batrachenko.task1.Entity.Product;
+import com.epam.batrachenko.task3.List.UniqueProductArrayList;
 import com.epam.batrachenko.task5.read_file_wrappers.ReadTextFileWrapper;
 import com.epam.batrachenko.task6.container.TypeProductsContainer;
 
@@ -11,9 +12,15 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductContainerUtil {
+/**
+ * Contains methods for saving product container to file or
+ * loading product container from file.
+ *
+ * @author Vladyslav_Batrachenko
+ */
+public class ProductContainerFilesHandler {
 
-    public static void save(List<Product> products, String path) throws IOException {
+    public void save(List<Product> products, String path) throws IOException {
         try (RandomAccessFile file = new RandomAccessFile(new File(path), "rw")) {
             file.setLength(0L);
             for (Product product : products) {
@@ -22,7 +29,7 @@ public class ProductContainerUtil {
         }
     }
 
-    public static List<Product> load(String path) throws IOException {
+    public List<Product> load(String path) throws IOException {
         List<Product> products = new ArrayList<>();
         try (ReadTextFileWrapper file = new ReadTextFileWrapper(path)) {
             for (String line : file) {

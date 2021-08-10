@@ -4,7 +4,7 @@ import com.epam.batrachenko.task1.Entity.ComputerPart;
 import com.epam.batrachenko.task1.Entity.GraphicsCard;
 import com.epam.batrachenko.task1.Entity.Product;
 
-public class GraphicsCardCreate extends ComputerPartCreate {
+public class GraphicsCardCreator extends ComputerPartCreator {
 
     @Override
     public Product createProductFromString(String line) {

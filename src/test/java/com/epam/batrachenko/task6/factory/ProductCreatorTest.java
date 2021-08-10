@@ -9,32 +9,32 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 
-public class ProductCreateTest {
+public class ProductCreatorTest {
     @Test
     public void shouldCorrectlyCreateProductFromLine() {
         Product expectedProduct = new Product("productTest", new BigDecimal("10"), "test");
-        Product actualProduct = (new ProductCreate()).createProductFromString(expectedProduct.toString());
+        Product actualProduct = (new ProductCreator()).createProductFromString(expectedProduct.toString());
         Assert.assertEquals(expectedProduct, actualProduct);
     }
 
     @Test
     public void shouldCorrectlyCreateAccessoriesFromLine() {
         Accessories expectedProduct = new Accessories("productTest", new BigDecimal("10"), "test", "type", "brand");
-        Product actualProduct = (new AccessoriesCreate()).createProductFromString(expectedProduct.toString());
+        Product actualProduct = (new AccessoriesCreator()).createProductFromString(expectedProduct.toString());
         Assert.assertEquals(expectedProduct, actualProduct);
     }
 
     @Test
     public void shouldCorrectlyCreateComputerPartFromLine() {
         ComputerPart expectedProduct = new ComputerPart("productTest", new BigDecimal("10"), "test", "category", "purpose");
-        Product actualProduct = (new ComputerPartCreate()).createProductFromString(expectedProduct.toString());
+        Product actualProduct = (new ComputerPartCreator()).createProductFromString(expectedProduct.toString());
         Assert.assertEquals(expectedProduct, actualProduct);
     }
 
     @Test
     public void shouldCorrectlyCreateGraphicsCardFromLine() {
         GraphicsCard expectedProduct = new GraphicsCard("productTest", new BigDecimal("10"), "test", "category", "purpose", 1, "memoryType", "connector");
-        Product actualProduct = (new GraphicsCardCreate()).createProductFromString(expectedProduct.toString());
+        Product actualProduct = (new GraphicsCardCreator()).createProductFromString(expectedProduct.toString());
         Assert.assertEquals(expectedProduct, actualProduct);
     }
 }

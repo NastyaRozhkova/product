@@ -1,8 +1,8 @@
-package com.epam.batrachenko.task6.input_strategy;
+package com.epam.batrachenko.task6.factory_input_data;
 
 import com.epam.batrachenko.task1.Entity.Accessories;
 import com.epam.batrachenko.task1.Entity.Product;
-import com.epam.batrachenko.task6.utils.InputConstants;
+import com.epam.batrachenko.task6.utils.Constants;
 import com.sun.org.slf4j.internal.Logger;
 import com.sun.org.slf4j.internal.LoggerFactory;
 
@@ -15,15 +15,15 @@ public class AccessoriesInputData extends ProductInputData {
     public Product inputDataFromConsole() {
         Scanner sc = new Scanner(System.in);
         Product p = super.inputDataFromConsole();
-        log.trace(InputConstants.INPUT_TYPE);
+        log.trace(Constants.INPUT_TYPE);
         String type = sc.nextLine();
-        log.trace(InputConstants.INPUT_BRAND);
+        log.trace(Constants.INPUT_BRAND);
         String brand = sc.nextLine();
         return new Accessories(p.getName(), p.getPrice(), p.getCountry(), type, brand);
     }
 
     @Override
     public String toString() {
-        return "Accessories";
+        return Constants.ACCESSORIES;
     }
 }
