@@ -1,4 +1,4 @@
-package com.epam.batrachenko.task6.utils;
+package com.epam.batrachenko.task6.constants;
 
 import com.epam.batrachenko.task1.Entity.Product;
 import com.epam.batrachenko.task5.read_file_wrappers.ReadTextFileWrapper;

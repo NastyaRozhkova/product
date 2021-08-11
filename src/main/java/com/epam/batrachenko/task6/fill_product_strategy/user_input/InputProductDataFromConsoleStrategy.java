@@ -5,7 +5,7 @@ import com.epam.batrachenko.task3.List.UniqueProductArrayList;
 import com.epam.batrachenko.task6.container.ProductInputDataContainer;
 import com.epam.batrachenko.task6.factory_input_data.ProductInputData;
 import com.epam.batrachenko.task6.fill_product_strategy.FillProductDataStrategy;
-import com.epam.batrachenko.task6.utils.Constants;
+import com.epam.batrachenko.task6.constants.Constants;
 import com.sun.org.slf4j.internal.Logger;
 import com.sun.org.slf4j.internal.LoggerFactory;
 

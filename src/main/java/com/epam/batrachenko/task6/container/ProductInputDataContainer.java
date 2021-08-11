@@ -4,7 +4,7 @@ import com.epam.batrachenko.task6.factory_input_data.AccessoriesInputData;
 import com.epam.batrachenko.task6.factory_input_data.ComputerPartInputData;
 import com.epam.batrachenko.task6.factory_input_data.GraphicsCardInputData;
 import com.epam.batrachenko.task6.factory_input_data.ProductInputData;
-import com.epam.batrachenko.task6.utils.Constants;
+import com.epam.batrachenko.task6.constants.Constants;
 
 import java.util.HashMap;
 import java.util.Map;

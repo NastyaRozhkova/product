@@ -7,7 +7,7 @@ import com.epam.batrachenko.task1.Entity.Product;
 import com.epam.batrachenko.task3.List.UniqueProductArrayList;
 import com.epam.batrachenko.task6.fill_product_strategy.FillProductDataStrategy;
 import com.epam.batrachenko.task6.fill_product_strategy.random.country.Country;
-import com.epam.batrachenko.task6.utils.Constants;
+import com.epam.batrachenko.task6.constants.Constants;
 
 import java.math.BigDecimal;
 import java.util.HashMap;

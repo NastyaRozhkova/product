@@ -4,7 +4,7 @@ import com.epam.batrachenko.task6.factory.AccessoriesCreator;
 import com.epam.batrachenko.task6.factory.ComputerPartCreator;
 import com.epam.batrachenko.task6.factory.GraphicsCardCreator;
 import com.epam.batrachenko.task6.factory.ProductCreator;
-import com.epam.batrachenko.task6.utils.Constants;
+import com.epam.batrachenko.task6.constants.Constants;
 
 import java.util.HashMap;
 import java.util.Map;

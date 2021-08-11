@@ -1,4 +1,4 @@
-package com.epam.batrachenko.task6.utils;
+package com.epam.batrachenko.task6.constants;
 
 public class Constants {
     public static final String INPUT_NAME = "Input product name";
