@@ -1,11 +1,16 @@
 package com.epam.batrachenko.task1.Entity;
 
+import com.epam.batrachenko.task7.field_annotaions.FieldTittle;
+
 import java.math.BigDecimal;
 import java.util.Objects;
 
 public class GraphicsCard extends ComputerPart {
-    private int memory;
+    @FieldTittle(tittle = "memory")
+    private Integer memory;
+    @FieldTittle(tittle = "memoryType")
     private String memoryType;
+    @FieldTittle(tittle = "connector")
     private String connector;
 
     public GraphicsCard() {
@@ -18,11 +23,11 @@ public class GraphicsCard extends ComputerPart {
         this.connector = connector;
     }
 
-    public int getMemory() {
+    public Integer getMemory() {
         return this.memory;
     }
 
-    public void setMemory(int memory) {
+    public void setMemory(Integer memory) {
         this.memory = memory;
     }
 

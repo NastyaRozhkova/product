@@ -1,10 +1,14 @@
 package com.epam.batrachenko.task1.Entity;
 
+import com.epam.batrachenko.task7.field_annotaions.FieldTittle;
+
 import java.math.BigDecimal;
 import java.util.Objects;
 
 public class ComputerPart extends Product {
+    @FieldTittle(tittle = "category")
     protected String category;
+    @FieldTittle(tittle = "purpose")
     protected String purpose;
 
     public ComputerPart() {

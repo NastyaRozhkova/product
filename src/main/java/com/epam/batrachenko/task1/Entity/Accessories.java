@@ -1,9 +1,13 @@
 package com.epam.batrachenko.task1.Entity;
+import com.epam.batrachenko.task7.field_annotaions.FieldTittle;
+
 import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Accessories extends Product {
+    @FieldTittle(tittle = "type")
     private String type;
+    @FieldTittle(tittle = "brand")
     private String brand;
 
     public Accessories() {

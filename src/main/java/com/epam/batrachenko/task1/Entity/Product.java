@@ -1,12 +1,17 @@
 package com.epam.batrachenko.task1.Entity;
 
+import com.epam.batrachenko.task7.field_annotaions.FieldTittle;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Product implements Serializable {
+    @FieldTittle(tittle = "name")
     protected String name;
+    @FieldTittle(tittle = "price")
     protected BigDecimal price;
+    @FieldTittle(tittle = "country")
     protected String country;
 
     public Product() {
