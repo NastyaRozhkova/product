@@ -13,13 +13,12 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class InputProductDataFromConsoleTest {
     private InputStream systemIn;
     private ByteArrayInputStream inputStream;
-
+    private Resource resource = new Resource("en");
     @Before
     public void setUp() {
         systemIn = System.in;
@@ -32,21 +31,23 @@ public class InputProductDataFromConsoleTest {
 
     @Test
     public void shouldCorrectlyInputDataForProduct() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        String data = "1 test" + System.lineSeparator() +
+        String data = "1" + System.lineSeparator()+
+                "test" + System.lineSeparator() +
                 "1" + System.lineSeparator() +
                 "test" + System.lineSeparator();
         inputStream = new ByteArrayInputStream(data.getBytes());
         System.setIn(inputStream);
 
-        List<Product> products = new InputProductDataFromConsole().fill(1);
-        Product expected = new Product(" test", new BigDecimal("1"), "test");
+        List<Product> products = new InputProductDataFromConsole().fill(1,resource);
+        Product expected = new Product("test", new BigDecimal("1"), "test");
 
         Assert.assertEquals(expected, products.get(0));
     }
 
     @Test
     public void shouldCorrectlyInputDataForAccessories() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        String data = "2 test" + System.lineSeparator() +
+        String data = "2" + System.lineSeparator() +
+                "test" + System.lineSeparator() +
                 "1" + System.lineSeparator() +
                 "test" + System.lineSeparator() +
                 "test" + System.lineSeparator() +
@@ -54,15 +55,16 @@ public class InputProductDataFromConsoleTest {
         inputStream = new ByteArrayInputStream(data.getBytes());
         System.setIn(inputStream);
 
-        List<Product> products = new InputProductDataFromConsole().fill(1);
-        Product expected = new Accessories(" test", new BigDecimal("1"), "test", "test", "test");
+        List<Product> products = new InputProductDataFromConsole().fill(1,resource);
+        Product expected = new Accessories("test", new BigDecimal("1"), "test", "test", "test");
 
         Assert.assertEquals(expected, products.get(0));
     }
 
     @Test
     public void shouldCorrectlyInputDataForComputerPart() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        String data = "3 test" + System.lineSeparator() +
+        String data = "3" + System.lineSeparator() +
+                "test" + System.lineSeparator() +
                 "1" + System.lineSeparator() +
                 "test" + System.lineSeparator() +
                 "test" + System.lineSeparator() +
@@ -70,15 +72,16 @@ public class InputProductDataFromConsoleTest {
         inputStream = new ByteArrayInputStream(data.getBytes());
         System.setIn(inputStream);
 
-        List<Product> products = new InputProductDataFromConsole().fill(1);
-        Product expected = new ComputerPart(" test", new BigDecimal("1"), "test", "test", "test");
+        List<Product> products = new InputProductDataFromConsole().fill(1,resource);
+        Product expected = new ComputerPart("test", new BigDecimal("1"), "test", "test", "test");
 
         Assert.assertEquals(expected, products.get(0));
     }
 
     @Test
     public void shouldCorrectlyInputDataForGraphicsCard() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        String data = "4 test" + System.lineSeparator() +
+        String data = "4" + System.lineSeparator() +
+                "test" + System.lineSeparator() +
                 "1" + System.lineSeparator() +
                 "test" + System.lineSeparator() +
                 "test" + System.lineSeparator() +
@@ -89,8 +92,8 @@ public class InputProductDataFromConsoleTest {
         inputStream = new ByteArrayInputStream(data.getBytes());
         System.setIn(inputStream);
 
-        List<Product> products = new InputProductDataFromConsole().fill(1);
-        Product expected = new GraphicsCard(" test", new BigDecimal("1"), "test", "test", "test", 1, "test", "test");
+        List<Product> products = new InputProductDataFromConsole().fill(1,resource);
+        Product expected = new GraphicsCard("test", new BigDecimal("1"), "test", "test", "test", 1, "test", "test");
 
         Assert.assertEquals(expected, products.get(0));
     }
