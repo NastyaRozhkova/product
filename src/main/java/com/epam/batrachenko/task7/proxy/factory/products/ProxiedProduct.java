@@ -2,15 +2,15 @@ package com.epam.batrachenko.task7.proxy.factory.products;
 
 import java.math.BigDecimal;
 
-public class UnmodifiableProduct implements ProductMethods {
+public class ProxiedProduct implements ProductMethods {
     private String name;
     private BigDecimal price;
     private String country;
 
-    public UnmodifiableProduct() {
+    public ProxiedProduct() {
     }
 
-    public UnmodifiableProduct(String name, BigDecimal price, String country) {
+    public ProxiedProduct(String name, BigDecimal price, String country) {
         this.name = name;
         this.price = price;
         this.country = country;
