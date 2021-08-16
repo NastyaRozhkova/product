@@ -2,7 +2,7 @@ package com.epam.batrachenko.task7;
 
 import com.epam.batrachenko.task1.Entity.Product;
 import com.epam.batrachenko.task7.reflection.InputProductDataFromConsole;
-import com.epam.batrachenko.task7.util.Resource;
+import com.epam.batrachenko.task7.reflection.Resource;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -10,17 +10,17 @@ import java.util.Scanner;
 
 public class InputAppWithReflection {
     public static void runApp() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        chooseLanguage();
+        Resource resource = new InputAppWithReflection().chooseLanguage();
         System.out.println("Input count of products");
-        List<Product> products = new InputProductDataFromConsole().fill(new Scanner(System.in).nextInt());
+        List<Product> products = new InputProductDataFromConsole().fill(new Scanner(System.in).nextInt(),resource);
         for (Product temp : products
         ) {
             System.out.println(temp);
         }
     }
 
-    public static void chooseLanguage() {
+    public Resource chooseLanguage() {
         System.out.println("Input language(en/ru)");
-        Resource.setLocale(new Scanner(System.in).nextLine());
+        return new Resource(new Scanner(System.in).nextLine());
     }
 }

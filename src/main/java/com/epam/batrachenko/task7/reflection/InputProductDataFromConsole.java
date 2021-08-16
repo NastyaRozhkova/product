@@ -1,57 +1,35 @@
 package com.epam.batrachenko.task7.reflection;
 
 import com.epam.batrachenko.task1.Entity.Product;
-import com.epam.batrachenko.task7.field_annotaions.FieldTittle;
-import com.epam.batrachenko.task7.util.Resource;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class InputProductDataFromConsole {
-    private Scanner sc = new Scanner(System.in);
+    private InputOutputData inputOutputData = new InputOutputData();
 
-    public List<Product> fill(int size) throws IllegalAccessException, InstantiationException,
+    public List<Product> fill(int size, Resource resource) throws IllegalAccessException, InstantiationException,
             NoSuchMethodException, InvocationTargetException {
         List<Product> products = new ArrayList<>();
         for (int i = 0; i < size; ++i) {
-            products.add(inputDataFromConsole(getProductClass()));
+            products.add(createProduct(getProductClass(), resource));
         }
         return products;
     }
 
-    private Product inputDataFromConsole(Class<? extends Product> prod) throws InstantiationException,
+    private Product createProduct(Class<? extends Product> prod, Resource resource) throws InstantiationException,
             IllegalAccessException, NoSuchMethodException, InvocationTargetException {
-        Field[] fields = getFields(prod);
-        ResourceBundle rb = Resource.getResourceBundle();
-        Product product = prod.newInstance();
-
-        for (Field field : fields) {
-            if (field.isAnnotationPresent(FieldTittle.class)) {
-                System.out.println(
-                        rb.getString("input." + field.getAnnotation(FieldTittle.class).tittle()));
-                field.setAccessible(true);
-                Constructor constructorField = field.getType().getDeclaredConstructor(String.class);
-                field.set(product, constructorField.newInstance(sc.nextLine()));
-            }
-        }
-        return product;
+        ProductFieldReflection fieldReflection = new ProductFieldReflection();
+        Field[] fields = fieldReflection.getFields(prod);
+        Map<String, String> data = inputOutputData.inputProductDataFromConsole(fields, resource);
+        return fieldReflection.fillProduct(prod, fields, data);
     }
 
     private Class<? extends Product> getProductClass() {
-        System.out.println("Input code");
-        ProductClassesContainer.getClasses().forEach((k, v) -> System.out.println(k + "-" + v.getSimpleName()));
-        return ProductClassesContainer.getClassByCode(sc.nextInt());
-    }
-
-    private Field[] getFields(Class<?> prod) {
-        List<Field> fields = new ArrayList<>();
-        while (prod.getSuperclass() != null) {
-            fields.addAll(0, Arrays.asList(prod.getDeclaredFields()));
-            prod = prod.getSuperclass();
-        }
-        return fields.toArray(new Field[0]);
+        return new ProductClassesContainer().getClassByCode(inputOutputData.inputCodeOfProductClass());
     }
 }
 
