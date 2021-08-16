@@ -9,18 +9,29 @@ import java.util.List;
 import java.util.Map;
 
 public class InputProductDataFromConsole {
-    private InputOutputData inputOutputData = new InputOutputData();
+    private final InputOutputData inputOutputData;
+    private final Resource resource;
 
-    public List<Product> fill(int size, Resource resource) throws IllegalAccessException, InstantiationException,
+    public InputProductDataFromConsole(Resource resource) {
+        inputOutputData = new InputOutputData();
+        this.resource = resource;
+    }
+
+    public InputProductDataFromConsole(InputOutputData inputOutputData, Resource resource) {
+        this.inputOutputData = inputOutputData;
+        this.resource = resource;
+    }
+
+    public List<Product> fill(int size) throws IllegalAccessException, InstantiationException,
             NoSuchMethodException, InvocationTargetException {
         List<Product> products = new ArrayList<>();
         for (int i = 0; i < size; ++i) {
-            products.add(createProduct(getProductClass(), resource));
+            products.add(createProduct(getProductClass()));
         }
         return products;
     }
 
-    private Product createProduct(Class<? extends Product> prod, Resource resource) throws InstantiationException,
+    private Product createProduct(Class<? extends Product> prod) throws InstantiationException,
             IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         ProductFieldReflection fieldReflection = new ProductFieldReflection();
         Field[] fields = fieldReflection.getFields(prod);
@@ -29,7 +40,10 @@ public class InputProductDataFromConsole {
     }
 
     private Class<? extends Product> getProductClass() {
-        return new ProductClassesContainer().getClassByCode(inputOutputData.inputCodeOfProductClass());
+        ProductClassesContainer productContainer = new ProductClassesContainer();
+        StringBuilder classes = new StringBuilder();
+        productContainer.getClasses().forEach((k, v) -> classes.append(k).append('-').append(v.getSimpleName()).append('\n'));
+        return productContainer.getClassByCode(inputOutputData.inputCodeOfProductClass(classes.toString()));
     }
 }
 

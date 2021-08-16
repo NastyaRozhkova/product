@@ -1,7 +1,5 @@
 package com.epam.batrachenko.task7.reflection;
 
-import com.epam.batrachenko.task7.field_annotaions.FieldTittle;
-
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -19,10 +17,15 @@ public class InputOutputData {
         this.sc = new Scanner(input);
     }
 
-    public Integer inputCodeOfProductClass() {
+    public Integer inputCodeOfProductClass(String classes) {
         System.out.println("Input code");
-        new ProductClassesContainer().getClasses().forEach((k, v) -> System.out.println(k + "-" + v.getSimpleName()));
+        System.out.println(classes);
         return Integer.parseInt(inputString());
+    }
+
+    public String getInput(String text) {
+        System.out.println(text);
+        return inputString();
     }
 
     public void printField(Field field, Resource resource) {
@@ -36,10 +39,8 @@ public class InputOutputData {
     public Map<String, String> inputProductDataFromConsole(Field[] fields, Resource resource) {
         Map<String, String> fieldsData = new HashMap<>();
         for (Field field : fields) {
-            if (field.isAnnotationPresent(FieldTittle.class)) {
-                printField(field, resource);
-                fieldsData.put(field.getName(), inputString());
-            }
+            printField(field, resource);
+            fieldsData.put(field.getName(), inputString());
         }
         return fieldsData;
     }

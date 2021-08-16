@@ -4,41 +4,26 @@ import com.epam.batrachenko.task1.Entity.Accessories;
 import com.epam.batrachenko.task1.Entity.ComputerPart;
 import com.epam.batrachenko.task1.Entity.GraphicsCard;
 import com.epam.batrachenko.task1.Entity.Product;
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.util.List;
 
 public class InputProductDataFromConsoleTest {
-    private InputStream systemIn;
-    private ByteArrayInputStream inputStream;
     private Resource resource = new Resource("en");
-    @Before
-    public void setUp() {
-        systemIn = System.in;
-    }
-
-    @After
-    public void tearDown() {
-        System.setIn(systemIn);
-    }
 
     @Test
     public void shouldCorrectlyInputDataForProduct() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        String data = "1" + System.lineSeparator()+
+        String data = "1" + System.lineSeparator() +
                 "test" + System.lineSeparator() +
                 "1" + System.lineSeparator() +
                 "test" + System.lineSeparator();
-        inputStream = new ByteArrayInputStream(data.getBytes());
-        System.setIn(inputStream);
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(data.getBytes());
 
-        List<Product> products = new InputProductDataFromConsole().fill(1,resource);
+        List<Product> products = new InputProductDataFromConsole(new InputOutputData(inputStream), resource).fill(1);
         Product expected = new Product("test", new BigDecimal("1"), "test");
 
         Assert.assertEquals(expected, products.get(0));
@@ -52,10 +37,9 @@ public class InputProductDataFromConsoleTest {
                 "test" + System.lineSeparator() +
                 "test" + System.lineSeparator() +
                 "test" + System.lineSeparator();
-        inputStream = new ByteArrayInputStream(data.getBytes());
-        System.setIn(inputStream);
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(data.getBytes());
 
-        List<Product> products = new InputProductDataFromConsole().fill(1,resource);
+        List<Product> products = new InputProductDataFromConsole(new InputOutputData(inputStream), resource).fill(1);
         Product expected = new Accessories("test", new BigDecimal("1"), "test", "test", "test");
 
         Assert.assertEquals(expected, products.get(0));
@@ -69,10 +53,9 @@ public class InputProductDataFromConsoleTest {
                 "test" + System.lineSeparator() +
                 "test" + System.lineSeparator() +
                 "test" + System.lineSeparator();
-        inputStream = new ByteArrayInputStream(data.getBytes());
-        System.setIn(inputStream);
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(data.getBytes());
 
-        List<Product> products = new InputProductDataFromConsole().fill(1,resource);
+        List<Product> products = new InputProductDataFromConsole(new InputOutputData(inputStream), resource).fill(1);
         Product expected = new ComputerPart("test", new BigDecimal("1"), "test", "test", "test");
 
         Assert.assertEquals(expected, products.get(0));
@@ -89,10 +72,9 @@ public class InputProductDataFromConsoleTest {
                 "1" + System.lineSeparator() +
                 "test" + System.lineSeparator() +
                 "test" + System.lineSeparator();
-        inputStream = new ByteArrayInputStream(data.getBytes());
-        System.setIn(inputStream);
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(data.getBytes());
 
-        List<Product> products = new InputProductDataFromConsole().fill(1,resource);
+        List<Product> products = new InputProductDataFromConsole(new InputOutputData(inputStream), resource).fill(1);
         Product expected = new GraphicsCard("test", new BigDecimal("1"), "test", "test", "test", 1, "test", "test");
 
         Assert.assertEquals(expected, products.get(0));
