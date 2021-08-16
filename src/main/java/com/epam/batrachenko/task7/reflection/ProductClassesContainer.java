@@ -9,26 +9,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProductClassesContainer {
-    private static final Map<Integer, Class<? extends Product>> classes = new HashMap<>();
+    private final Map<Integer, Class<? extends Product>> classes = new HashMap<>();
 
-    static {
+    public ProductClassesContainer() {
         classes.put(1, Product.class);
         classes.put(2, Accessories.class);
         classes.put(3, ComputerPart.class);
         classes.put(4, GraphicsCard.class);
     }
 
-    public static Class<? extends Product> getClassByCode(int code) {
+    public Class<? extends Product> getClassByCode(int code) {
         if (!classes.containsKey(code)) {
             return Product.class;
         }
         return classes.get(code);
     }
 
-    public static Map<Integer, Class<? extends Product>> getClasses() {
+    public Map<Integer, Class<? extends Product>> getClasses() {
         return classes;
     }
 
-    private ProductClassesContainer() {
-    }
 }
