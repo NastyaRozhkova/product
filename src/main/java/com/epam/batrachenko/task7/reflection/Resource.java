@@ -21,7 +21,7 @@ public class Resource {
         this.resourceBundle = ResourceBundle.getBundle(RESOURCES, locale);
     }
 
-    public String getInputString(Field field) {
-        return resourceBundle.getString(INPUT + field.getAnnotation(FieldTittle.class).tittle());
+    public String getInputString(String tittle) {
+        return resourceBundle.getString(INPUT + tittle);
     }
 }

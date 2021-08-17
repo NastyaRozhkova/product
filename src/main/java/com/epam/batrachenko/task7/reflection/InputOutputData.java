@@ -28,7 +28,7 @@ public class InputOutputData {
         return inputString();
     }
 
-    public void printField(Field field, Resource resource) {
+    public void printField(String field, Resource resource) {
         System.out.println(resource.getInputString(field));
     }
 
@@ -36,11 +36,11 @@ public class InputOutputData {
         return sc.nextLine();
     }
 
-    public Map<String, String> inputProductDataFromConsole(Field[] fields, Resource resource) {
+    public Map<String, String> inputProductDataFromConsole(String[] fields, Resource resource) {
         Map<String, String> fieldsData = new HashMap<>();
-        for (Field field : fields) {
+        for (String field : fields) {
             printField(field, resource);
-            fieldsData.put(field.getName(), inputString());
+            fieldsData.put(field, inputString());
         }
         return fieldsData;
     }

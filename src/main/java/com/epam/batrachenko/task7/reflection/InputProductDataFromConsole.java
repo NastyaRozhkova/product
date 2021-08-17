@@ -1,6 +1,7 @@
 package com.epam.batrachenko.task7.reflection;
 
 import com.epam.batrachenko.task1.Entity.Product;
+import com.epam.batrachenko.task7.field_annotaions.FieldTittle;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -11,11 +12,6 @@ import java.util.Map;
 public class InputProductDataFromConsole {
     private final InputOutputData inputOutputData;
     private final Resource resource;
-
-    public InputProductDataFromConsole(Resource resource) {
-        inputOutputData = new InputOutputData();
-        this.resource = resource;
-    }
 
     public InputProductDataFromConsole(InputOutputData inputOutputData, Resource resource) {
         this.inputOutputData = inputOutputData;
@@ -35,8 +31,17 @@ public class InputProductDataFromConsole {
             IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         ProductFieldReflection fieldReflection = new ProductFieldReflection();
         Field[] fields = fieldReflection.getFields(prod);
-        Map<String, String> data = inputOutputData.inputProductDataFromConsole(fields, resource);
+        String[] fieldsName = convertFieldToString(fields);
+        Map<String, String> data = inputOutputData.inputProductDataFromConsole(fieldsName, resource);
         return fieldReflection.fillProduct(prod, fields, data);
+    }
+
+    private String[] convertFieldToString(Field[] fields) {
+        String[] fieldsName = new String[fields.length];
+        for (int i = 0; i < fields.length; i++) {
+            fieldsName[i] = fields[i].getAnnotation(FieldTittle.class).tittle();
+        }
+        return fieldsName;
     }
 
     private Class<? extends Product> getProductClass() {

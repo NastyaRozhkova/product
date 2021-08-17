@@ -10,16 +10,17 @@ import java.util.List;
 
 public class InputAppWithReflection {
     public static void runApp() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        Resource resource = chooseLanguage();
-        Integer count = Integer.parseInt(new InputOutputData().getInput("Input count of products"));
-        List<Product> products = new InputProductDataFromConsole(resource).fill(count);
+        InputOutputData inputOutputData=new InputOutputData();
+        Resource resource = chooseLanguage(inputOutputData);
+        Integer count = Integer.parseInt(inputOutputData.getInput("Input count of products"));
+        List<Product> products = new InputProductDataFromConsole(inputOutputData,resource).fill(count);
         for (Product temp : products
         ) {
             System.out.println(temp);
         }
     }
 
-    public static Resource chooseLanguage() {
-        return new Resource(new InputOutputData().getInput("Input language(en/ru)"));
+    public static Resource chooseLanguage(InputOutputData inputOutputData) {
+        return new Resource(inputOutputData.getInput("Input language(en/ru)"));
     }
 }
