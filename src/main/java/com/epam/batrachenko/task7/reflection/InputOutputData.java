@@ -1,7 +1,6 @@
 package com.epam.batrachenko.task7.reflection;
 
 import java.io.InputStream;
-import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -43,5 +42,9 @@ public class InputOutputData {
             fieldsData.put(field, inputString());
         }
         return fieldsData;
+    }
+
+    public void print(String text) {
+        System.out.println(text);
     }
 }
