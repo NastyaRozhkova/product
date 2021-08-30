@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 public class FileReaderUtil {
+
     public static byte[] getFileText(String fileName) {
         byte[] fileText = new byte[0];
         File file = new File(fileName);

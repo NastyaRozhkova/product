@@ -1,11 +1,12 @@
 package com.epam.batrachenko.task8.searching_primes;
 
 import com.epam.batrachenko.task7.reflection.InputOutputData;
-import com.epam.batrachenko.task8.searching_primes.creators.SearchCreator;
+import com.epam.batrachenko.task8.searching_primes.creators.SearchRunnableCreator;
 
 import java.util.List;
 
 public class SearchPrimeNumbersApp {
+
     private int left;
     private int right;
     private int countThreads;
@@ -17,16 +18,16 @@ public class SearchPrimeNumbersApp {
 
     public List<Integer> searchPrimeNumbers() {
         inputData(inputOutputData);
-        SearchPrimeNumbers search = chooseType();
-        Thread searching = new Thread(()->
-        inputOutputData.print(String.valueOf(search.searchPrimeNumbers())));
+        SearchPrimeNumbers searchPrimeNumbers = new SearchPrimeNumbers();
+        Thread searching = new Thread(() ->
+                inputOutputData.print(String.valueOf(searchPrimeNumbers.search(left, right, countThreads, chooseType()))));
         searching.start();
         try {
             searching.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return search.getPrimes();
+        return searchPrimeNumbers.getPrimes();
     }
 
     private void inputData(InputOutputData inputOutputData) {
@@ -35,10 +36,10 @@ public class SearchPrimeNumbersApp {
         countThreads = Integer.parseInt(inputOutputData.getInput("Input count of threads"));
     }
 
-    private SearchPrimeNumbers chooseType() {
+    private SearchRunnableCreator chooseType() {
         SearchContainer searchContainer = new SearchContainer();
         Integer code = inputOutputData.inputCodeOfProductClass(searchContainer.getSearches());
-        SearchCreator creator = searchContainer.getSearchCreatorByCode(code);
-        return creator.createSearch(left, right, countThreads);
+        SearchRunnableCreator creator = searchContainer.getSearchCreatorByCode(code);
+        return creator;
     }
 }

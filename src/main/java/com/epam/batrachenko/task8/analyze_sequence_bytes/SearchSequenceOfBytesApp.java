@@ -3,6 +3,7 @@ package com.epam.batrachenko.task8.analyze_sequence_bytes;
 import com.epam.batrachenko.task7.reflection.InputOutputData;
 
 public class SearchSequenceOfBytesApp {
+
     public void searchLongestSequenceOfBytesInFiles(InputOutputData inputOutputData) {
         SearchService searchService = new SearchService();
 
@@ -15,7 +16,6 @@ public class SearchSequenceOfBytesApp {
                     "SecondIndex " + searchResult.getSecondIndex() + System.lineSeparator() + System.lineSeparator() +
                     "Input file name or exit to finish");
         }
-        searchService.getSearchThread().interrupt();
     }
 
 }

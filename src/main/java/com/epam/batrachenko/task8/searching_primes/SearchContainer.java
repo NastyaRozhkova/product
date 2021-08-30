@@ -6,16 +6,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SearchContainer {
-    private final Map<Integer, SearchCreator> searches = new HashMap<>();
+
+    private final Map<Integer, SearchRunnableCreator> searches = new HashMap<>();
 
     public SearchContainer() {
-        searches.put(1, new SearchThreadGeneralCollectionCreator());
-        searches.put(2, new SearchThreadOwnCollectionCreator());
-        searches.put(3, new SearchExecutorGeneralCollectionCreator());
-        searches.put(4, new SearchExecutorOwnCollectionCreator());
+        searches.put(1, new SearchThreadGeneralCollectionRunnableCreator());
+        searches.put(2, new SearchThreadOwnCollectionRunnableCreator());
+        searches.put(3, new SearchExecutorGeneralCollectionRunnableCreator());
+        searches.put(4, new SearchExecutorOwnCollectionRunnableCreator());
     }
 
-    public SearchCreator getSearchCreatorByCode(int code) {
+    public SearchRunnableCreator getSearchCreatorByCode(int code) {
         return searches.get(code);
     }
 

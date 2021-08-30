@@ -3,6 +3,7 @@ package com.epam.batrachenko.task8.analyze_sequence_bytes;
 import java.util.Objects;
 
 public class SearchResult {
+
     private int maxLength = 0;
     private int firstIndex = -1;
     private int secondIndex = -1;
@@ -29,6 +30,9 @@ public class SearchResult {
 
     public void setSecondIndex(int secondIndex) {
         this.secondIndex = secondIndex;
+    }
+
+    public SearchResult() {
     }
 
     public SearchResult(int maxLength, int firstIndex, int secondIndex) {
