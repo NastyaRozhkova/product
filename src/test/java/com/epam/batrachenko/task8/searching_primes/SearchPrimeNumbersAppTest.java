@@ -13,7 +13,8 @@ public class SearchPrimeNumbersAppTest {
         String data = "3" + System.lineSeparator() +
                 "10" + System.lineSeparator() +
                 "4" + System.lineSeparator() +
-                "3" + System.lineSeparator();
+                "1" + System.lineSeparator() +
+                "1" + System.lineSeparator();
         ByteArrayInputStream inputStream = new ByteArrayInputStream(data.getBytes());
 
         SearchPrimeNumbersApp app = new SearchPrimeNumbersApp(new InputOutputData(inputStream));
@@ -27,7 +28,8 @@ public class SearchPrimeNumbersAppTest {
         String data = "1" + System.lineSeparator() +
                 "20" + System.lineSeparator() +
                 "3" + System.lineSeparator() +
-                "4" + System.lineSeparator();
+                "2" + System.lineSeparator() +
+                "1" + System.lineSeparator();
         ByteArrayInputStream inputStream = new ByteArrayInputStream(data.getBytes());
 
         SearchPrimeNumbersApp app = new SearchPrimeNumbersApp(new InputOutputData(inputStream));
@@ -41,7 +43,8 @@ public class SearchPrimeNumbersAppTest {
         String data = "30" + System.lineSeparator() +
                 "50" + System.lineSeparator() +
                 "2" + System.lineSeparator() +
-                "1" + System.lineSeparator();
+                "1" + System.lineSeparator() +
+                "2" + System.lineSeparator();
         ByteArrayInputStream inputStream = new ByteArrayInputStream(data.getBytes());
 
         SearchPrimeNumbersApp app = new SearchPrimeNumbersApp(new InputOutputData(inputStream));
@@ -55,6 +58,7 @@ public class SearchPrimeNumbersAppTest {
         String data = "60" + System.lineSeparator() +
                 "69" + System.lineSeparator() +
                 "5" + System.lineSeparator() +
+                "2" + System.lineSeparator() +
                 "2" + System.lineSeparator();
         ByteArrayInputStream inputStream = new ByteArrayInputStream(data.getBytes());
 

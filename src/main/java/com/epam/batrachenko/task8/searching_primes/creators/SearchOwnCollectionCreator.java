@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class SearchThreadOwnCollectionRunnableCreator implements SearchRunnableCreator {
+public class SearchOwnCollectionCreator implements SearchCreator {
 
-    @Override
     public Runnable createSearch(Map.Entry<Integer, Integer> subInterval, List<Integer> primes) {
-        return () -> {
+        return () ->
+        {
             List<Integer> ownListPrimes = new ArrayList<>();
             new FindPrimes().checkPrimes(subInterval, ownListPrimes);
             primes.addAll(ownListPrimes);
