@@ -15,7 +15,6 @@ public class HttpServerService extends ServerService {
 
     public HttpServerService(Socket socket) throws IOException {
         super(socket);
-        start();
     }
 
     @Override

@@ -13,7 +13,6 @@ public class TCPServerService extends ServerService {
 
     public TCPServerService(Socket socket) throws IOException {
         super(socket);
-        start();
     }
 
     @Override
