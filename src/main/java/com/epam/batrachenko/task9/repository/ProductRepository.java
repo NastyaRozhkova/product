@@ -13,9 +13,9 @@ public class ProductRepository {
     private static final Logger log = LoggerFactory.getLogger(ProductRepository.class);
     private final UniqueProductArrayList<Product> products = new UniqueProductArrayList<>();
 
-    public ProductRepository(String fileName) {
+    public ProductRepository(ProductContainerFilesHandler containerFilesHandler, String fileName) {
         try {
-            products.addAll(new ProductContainerFilesHandler().load(fileName));
+            products.addAll(containerFilesHandler.load(fileName));
         } catch (IOException e) {
             log.error(e.getMessage(), e);
         }

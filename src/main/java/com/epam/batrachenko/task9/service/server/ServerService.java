@@ -10,7 +10,7 @@ public abstract class ServerService implements Runnable {
     protected BufferedReader input;
     protected BufferedWriter output;
     protected CommandContainer commandContainer;
-    
+
     protected ServerService(Socket socket, CommandContainer commandContainer) throws IOException {
         input = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
         output = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
