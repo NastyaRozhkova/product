@@ -8,7 +8,7 @@ import com.epam.batrachenko.task9.util.Constants;
 public class Main {
 
     public static void main(String... args) {
-        new Server(Constants.TCP_PORT, new TcpControllerFactory());
-        new Server(Constants.HTTP_PORT, new HttpControllerFactory());
+        new Server(Constants.TCP_PORT, new TcpControllerFactory(), Initializer.initialize(Constants.PRODUCTS_FILE_NAME));
+        new Server(Constants.HTTP_PORT, new HttpControllerFactory(), Initializer.initialize(Constants.PRODUCTS_FILE_NAME));
     }
 }

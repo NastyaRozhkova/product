@@ -18,7 +18,7 @@ public class Client {
         ) {
             InputOutputData inputOutputData = new InputOutputData();
             log.debug("Client start");
-            out.write(inputOutputData.getInput(Constants.INPUT_COMMAND) + "\n");
+            out.write(inputOutputData.getInput(Constants.INPUT_COMMAND) + System.lineSeparator());
             out.flush();
             System.out.println(in.readLine());
         } catch (IOException e) {

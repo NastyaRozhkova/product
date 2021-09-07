@@ -11,18 +11,23 @@ import java.util.Optional;
 
 public class ProductRepository {
     private static final Logger log = LoggerFactory.getLogger(ProductRepository.class);
+    private final UniqueProductArrayList<Product> products = new UniqueProductArrayList<>();
 
-    public UniqueProductArrayList<Product> getListProducts() {
-        UniqueProductArrayList<Product> products = new UniqueProductArrayList<>();
+    public ProductRepository(String fileName) {
         try {
-            products.addAll(new ProductContainerFilesHandler().load("C:\\Users\\Vl\\pre_prod_java_q3_2021\\save.txt"));
+            products.addAll(new ProductContainerFilesHandler().load(fileName));
         } catch (IOException e) {
             log.error(e.getMessage(), e);
         }
+    }
+
+    public UniqueProductArrayList<Product> getListProducts() {
         return products;
     }
 
     public Optional<Product> getItemByName(String name) {
-        return getListProducts().stream().filter(p -> p.getName().equals(name)).findFirst();
+        return getListProducts().stream()
+                .filter(p -> p.getName().equals(name))
+                .findFirst();
     }
 }
