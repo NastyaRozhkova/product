@@ -1,0 +1,6 @@
+Accessories{name='proxiedProduct25923217', price='749286', country='BELGIUM', type='type84', brand='brand95'}
+Product{name='proxiedProduct44767745', price='618573', country='JAPAN'}
+ComputerPart{name='proxiedProduct62054090', price='526357', country='AUSTRALIA', category='category80', purpose='purpose62'}
+GraphicsCard{name='proxiedProduct95755943', price='326660', country='AUSTRALIA', category='category74', purpose='purpose91', memory='24', memoryType='memoryType85', connector='connector61'}
+ComputerPart{name='proxiedProduct75090121', price='81758', country='PORTUGAL', category='category15', purpose='purpose72'}
+Product{name='proxiedProduct94458287', price='395593', country='FINLAND'}
